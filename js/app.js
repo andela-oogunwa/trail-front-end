@@ -1,6 +1,10 @@
-var app = angular.module('TrailApp', ['ngMaterial']);
+/* global angular*/
+'use strict';
 
-app.controller('MainCtrl', ['$scope', '$mdSidenav', function($scope, $mdSidenav){
+angular.module('TrailApp', ['ngMaterial']);
+
+angular.module('TrailApp').controller('MainCtrl', ['$scope', '$mdSidenav', function($scope, $mdSidenav){
+
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
