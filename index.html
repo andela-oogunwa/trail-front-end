@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta name="viewport" content="initial-scale=1" />
   </head>
   <body layout="column" ng-controller="MainCtrl">
@@ -21,23 +22,26 @@
         <div layout="column" flex id="content">
           <md-content layout="column" flex class="md-padding">
               <md-list>
-                <md-list-item class="md-3-line">
+                <!-- <md-list-item class="md-3-line"> -->
                   <div class="md-list-item-text">
                     <md-card>
                       <md-card-content>
-                        <h2 class="md-title">Convene and engage community</h2>
-                          <div layout="row" layout-wrap>
+                        <div layout="row" layout-align="space-between center" ng-click="togglesection('sectionOne')">
+                          <h2 class="md-title" >Convene and engage community</h2>
+                          <span class="okr-status">SUCCESS</span>
+                        </div>
+                          <div layout="row" ng-show="checkDropdown('sectionOne')" layout-wrap>
                             <div flex="50">
-                              <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                              <md-checkbox ng-model="data.ca1" aria-label="Checkbox 1">
                                 Double the number of major events produced from previous year
                               </md-checkbox>
-                              <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                              <md-checkbox ng-model="data.ca2" aria-label="Checkbox 1">
                                 Craft a 3-minute stump speech
                               </md-checkbox>
-                              <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                              <md-checkbox ng-model="data.ca3" aria-label="Checkbox 1">
                                 Craft a 5-minute stump speech
                               </md-checkbox>
-                              <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                              <md-checkbox ng-model="data.ca4" aria-label="Checkbox 1">
                                 Double high level engagement with twice-monthly email communications
                               </md-checkbox>
                             </div>
@@ -45,26 +49,102 @@
                       </md-card-content>
                     </md-card>
                   </div>
-                </md-list-item>
+                <!-- </md-list-item> -->
                 <md-divider></md-divider>
-                <md-list-item class="md-3-line">
+
+                <!-- <md-list-item class="md-3-line"> -->
                   <div class="md-list-item-text">
-                    <p>Book speaking roles to drive incoming leads</p>
+                    <md-card>
+                      <md-card-content>
+                        <div layout="row" layout-align="space-between center" ng-click="togglesection('sectionTwo')">
+                          <h2 class="md-title">Book speaking roles to drive incoming leads</h2>
+                          <span class="okr-status">SUCCESS</span>
+                        </div>
+                          <div layout="row" ng-show="checkDropdown('sectionTwo')" layout-wrap>
+                            <div flex="50">
+                              <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                                Double the number of major events produced from previous year
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cb2" aria-label="Checkbox 1">
+                                Craft a 3-minute stump speech
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cb3" aria-label="Checkbox 1">
+                                Craft a 5-minute stump speech
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cb4" aria-label="Checkbox 1">
+                                Double high level engagement with twice-monthly email communications
+                              </md-checkbox>
+                            </div>
+                          </div>
+                      </md-card-content>
+                    </md-card>
                   </div>
-                </md-list-item>
+                <!-- </md-list-item> -->
+
                 <md-divider></md-divider>
-                <md-list-item class="md-3-line">
+
+                <!-- <md-list-item class="md-3-line"> -->
                   <div class="md-list-item-text">
-                    <p>Successfully Onboard All Developers on to Client Projects</p>
+                    <md-card>
+                      <md-card-content>
+                        <div layout="row" layout-align="space-between center" ng-click="togglesection('sectionThree')">
+                          <h2 class="md-title">Successfully Onboard All Developers on to Client Projects</h2>
+                          <span class="okr-status">SUCCESS</span>
+                        </div>
+                          <div layout="row" ng-show="checkDropdown('sectionThree')" layout-wrap>
+                            <div flex="50">
+                              <md-checkbox ng-model="data.cc1" aria-label="Checkbox 1">
+                                Double the number of major events produced from previous year
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cc2" aria-label="Checkbox 1">
+                                Craft a 3-minute stump speech
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cc3" aria-label="Checkbox 1">
+                                Craft a 5-minute stump speech
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cc4" aria-label="Checkbox 1">
+                                Double high level engagement with twice-monthly email communications
+                              </md-checkbox>
+                            </div>
+                          </div>
+                      </md-card-content>
+                    </md-card>
                   </div>
-                </md-list-item>
+                <!-- </md-list-item> -->
+
                 <md-divider></md-divider>
-                <md-list-item class="md-3-line">
+
+                <!-- <md-list-item class="md-3-line"> -->
                   <div class="md-list-item-text">
-                    <p>Produce new marketing materials</p>
+                    <md-card>
+                      <md-card-content>
+                        <div layout="row" layout-align="space-between center" ng-click="togglesection('sectionFour')">
+                          <h2 class="md-title">Produce new marketing materials</h2>
+                          <span class="okr-status" ng-class="{'okr-status-failed': true}">FAIL</span>
+                        </div>
+                          <div layout="row" ng-show="checkDropdown('sectionFour')" layout-wrap>
+                            <div flex="50">
+                              <md-checkbox ng-model="data.cd1" aria-label="Checkbox 1">
+                                Double the number of major events produced from previous year
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cd2" aria-label="Checkbox 1">
+                                Craft a 3-minute stump speech
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cd3" aria-label="Checkbox 1">
+                                Craft a 5-minute stump speech
+                              </md-checkbox>
+                              <md-checkbox ng-model="data.cd4" aria-label="Checkbox 1">
+                                Double high level engagement with twice-monthly email communications
+                              </md-checkbox>
+                            </div>
+                          </div>
+                      </md-card-content>
+                    </md-card>
                   </div>
-                </md-list-item>
+                <!-- </md-list-item> -->
+
                 <md-divider></md-divider>
+
               </md-list>
           </md-content>
         </div>

@@ -3,3 +3,11 @@
   font-weight: inherit;
   margin: inherit;
 }
+
+.okr-status {
+    float: right;
+    color: green;
+}
+.okr-status-failed {
+    color: red !important;
+}
