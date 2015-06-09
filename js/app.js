@@ -3,23 +3,17 @@
 
 angular.module('TrailApp', ['ngMaterial']);
 
-angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil', '$log', function($scope, $timeout, $mdSidenav, $mdUtil, $log){
+angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil', function($scope, $timeout, $mdSidenav, $mdUtil){
   $scope.toggleLeft = buildToggler('left');
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
           $mdSidenav(navID)
-            .toggle()
-            .then(function () {
-              $log.debug("toggle " + navID + " is done");
-            });
+            .toggle();
         },300);
     return debounceFn;
   }
   $scope.close = function () {
-    $mdSidenav('left').close()
-      .then(function () {
-        $log.debug("close LEFT is done");
-      });
+    $mdSidenav('left').close();
   };
   $scope.cards = [{
     title: 'Convene and engage community',
