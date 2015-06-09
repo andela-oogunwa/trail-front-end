@@ -21,11 +21,11 @@
         <md-content layout="column" flex class="md-padding">
           <md-card ng-repeat="card in cards">
             <md-card-content>
-              <div layout="row" layout-align="space-between center" ng-click="togglesection('sectionOne')">
+              <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
                 <h2 class="md-title" >{{card.title}}</h2>
                 <span class="okr-status">{{card.status}}</span>
               </div>
-                <div layout="row" ng-show="checkDropdown('sectionOne')" layout-wrap>
+                <div layout="row" ng-show="card.isOpen" layout-wrap>
                   <div flex="50">
                     <md-checkbox ng-repeat="task in card.tasks" ng-model="data.ca1" aria-label="Checkbox 1">
                       {{task}}
