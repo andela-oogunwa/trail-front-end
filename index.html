@@ -16,7 +16,8 @@
     <div layout="row" flex>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
-          <md-card ng-repeat="card in cards">
+          <md-card ng-repeat="card in cards | filter: filterValue">
+          {{filterValue}}
             <md-card-content>
               <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
                 <h2 class="md-title" >{{card.title}}</h2>
@@ -43,7 +44,10 @@
       </md-toolbar>
       <md-content layout-padding>
         <p hide-md show-gt-md>
-          
+          <div>
+            <h2 class="md-title">Filter by member</h2>
+            <md-checkbox ng-click="filter(card.member)" ng-repeat="card in cards">{{card.member}}</md-checkbox>
+          </div>
         </p>
       </md-content>
     </md-sidenav>
