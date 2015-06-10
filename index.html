@@ -16,7 +16,8 @@
     <div layout="row" flex>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
-          <md-card ng-repeat="card in cards | cardFilter: filterArray">
+          <md-card ng-repeat="card in cards | cardFilter: filterLabelsArray">
+          <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
             <md-card-content>
               <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
                 <h2 class="md-title" >{{card.title}}</h2>
@@ -27,6 +28,9 @@
                     <md-checkbox ng-repeat="task in card.tasks" ng-model="data.ca1" aria-label="Checkbox 1">
                       {{task}}
                     </md-checkbox>
+                    <md-list ng-repeat='label in card.labels'>
+                      {{label}}
+                    </md-list>
                   </div>
                 </div>
             </md-card-content>
@@ -47,6 +51,13 @@
             <h2 class="md-title">Filter by member</h2>
 
             <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member, selected)">{{member}}</md-checkbox>
+          </div>
+        </p>
+        <p hide-md show-gt-md>
+          <div>
+            <h2 class="md-title">Filter by label</h2>
+
+            <md-checkbox  ng-repeat="label in allCardLabels" ng-model='selected' ng-change="filterLabel(label, selected)">{{label}}</md-checkbox>
           </div>
         </p>
       </md-content>

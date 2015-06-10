@@ -3,10 +3,10 @@
 
 angular.module('TrailApp', ['ngMaterial']);
 
-angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter',function($scope, $timeout, $mdSidenav, $mdUtil, $filter){
+angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', function($scope, $timeout, $mdSidenav, $mdUtil, $filter){
   $scope.filterArray = [];
   $scope.toggleLeft = buildToggler('left');
-  $scope.filterValue = 'Nad Enegesi';
+  $scope.filterLabelsArray = [];
 
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
@@ -27,35 +27,52 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
       $scope.filterArray.splice($scope.filterArray.indexOf(member),1);
     }
   };
+
+  $scope.filterLabel = function(label, selected) {
+    if(selected){
+      $scope.filterLabelsArray.push(label);
+    } else {
+      $scope.filterLabelsArray.splice($scope.filterLabelsArray.indexOf(label),1);
+    }
+  };
+
+
   $scope.cards = [{
     title: 'Convene and engage community',
     status: 'SUCCESS',
     member: ['Abimbola Idowu','Fadekemi Ogunwa'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications']
+    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
+    labels:['Success', 'Ops']
   }, {
     title: 'book speaking roles to drive income leads',
     status: 'SUCCESS',
     member: ['Abimbola Idowu', 'Nadayar Enegesi'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications']
+    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
+    labels:['marketing and comms', 'Ops']
   }, {
     title: 'book speaking roles to drive income leads',
     status: 'SUCCESS',
     member: ['Nad Brice'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications']
+    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
+    labels:['Seeking help','failed','professional development']
   }, {
     title: 'Train young software developers',
     status: 'SUCCESS',
     member: ['Fadekemi Ogunwa', 'Abimbola Idowu'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications']
+    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
+    labels:['failed']
   }, {
     title: 'book speaking roles to drive income leads',
     status: 'SUCCESS',
     member: ['Obie Fernandez', 'Christina Sass'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications']
+    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
+    labels:['Success','failed','Seeking help','professional development']
   }];
   $scope.allMembers = [];
   $scope.allCardMembers = [];
-  
+  $scope.allLabels = [];
+  $scope.allCardLabels = [];
+
   _.forEach($scope.cards,function(card) {
     $scope.allMembers.push(card.member);
   });
@@ -65,6 +82,15 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   };
 
   console.log('allCardMembers', $scope.allCardMembers);
+
+
+  _.forEach($scope.cards, function(card){
+    $scope.allLabels.push(card.labels);
+  });
+
+  if($scope.allLabels) {
+    $scope.allCardLabels = _.uniq($scope.allCardLabels.concat.apply($scope.allCardLabels, $scope.allLabels));
+  };
 
   $scope.toggleCards = function(index) {
     $scope.cards[index].isOpen = !$scope.cards[index].isOpen;
@@ -83,7 +109,8 @@ angular.module('TrailApp').filter('cardFilter', function () {
       var searchResult = [];
       _.forEach(allCards, function (card) {
         console.log('intersection',_.intersection(card.member,searchArray));
-        if(_.intersection(card.member,searchArray).length > 0) {
+        console.log('intersection',_.intersection(card.labels,searchArray));
+        if(_.intersection(card.member,searchArray).length > 0 || _.intersection(card.labels,searchArray).length > 0) {
           searchResult.push(card);
         }
       });
@@ -92,5 +119,11 @@ angular.module('TrailApp').filter('cardFilter', function () {
        return allCards;
     }
    };
+
 });
+
+
+
+
+
 
