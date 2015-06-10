@@ -16,8 +16,7 @@
     <div layout="row" flex>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
-          <md-card ng-repeat="card in cards | filter: filterValue">
-          {{filterValue}}
+          <md-card ng-repeat="card in cards | cardFilter: filterArray">
             <md-card-content>
               <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
                 <h2 class="md-title" >{{card.title}}</h2>
@@ -46,7 +45,8 @@
         <p hide-md show-gt-md>
           <div>
             <h2 class="md-title">Filter by member</h2>
-            <md-checkbox ng-click="filter(card.member)" ng-repeat="card in cards">{{card.member}}</md-checkbox>
+
+            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member, selected)">{{member}}</md-checkbox>
           </div>
         </p>
       </md-content>
@@ -56,6 +56,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
