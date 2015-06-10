@@ -16,7 +16,7 @@
     <div layout="row" flex>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
-          <md-card ng-repeat="card in cards | cardFilter: filterLabelsArray">
+          <md-card ng-repeat="card in cards | cardFilter: filterArray">
           <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
             <md-card-content>
               <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">

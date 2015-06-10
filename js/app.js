@@ -4,9 +4,11 @@
 angular.module('TrailApp', ['ngMaterial']);
 
 angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', function($scope, $timeout, $mdSidenav, $mdUtil, $filter){
-  $scope.filterArray = [];
+  $scope.filterArray = {
+    'member': [],
+    'labels': []
+  };
   $scope.toggleLeft = buildToggler('left');
-  $scope.filterLabelsArray = [];
 
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
@@ -22,17 +24,17 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   $scope.filterMember = function(member, selected) {
 
     if(selected){
-      $scope.filterArray.push(member);
+      $scope.filterArray.member.push(member);
     } else {
-      $scope.filterArray.splice($scope.filterArray.indexOf(member),1);
+      $scope.filterArray.member.splice($scope.filterArray.member.indexOf(member),1);
     }
   };
 
   $scope.filterLabel = function(label, selected) {
     if(selected){
-      $scope.filterLabelsArray.push(label);
+      $scope.filterArray.labels.push(label);
     } else {
-      $scope.filterLabelsArray.splice($scope.filterLabelsArray.indexOf(label),1);
+      $scope.filterArray.labels.splice($scope.filterArray.labels.indexOf(label),1);
     }
   };
 
@@ -105,12 +107,11 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
 angular.module('TrailApp').filter('cardFilter', function () {
   return function (allCards, searchArray) {
     console.log('called with',searchArray);
-    if (!angular.isUndefined(allCards) && !angular.isUndefined(searchArray) && searchArray.length > 0) {
+    var searchArrayCondition = searchArray.member.length || searchArray.labels.length;
+    if (!angular.isUndefined(allCards) && !angular.isUndefined(searchArray) && searchArrayCondition > 0) {
       var searchResult = [];
       _.forEach(allCards, function (card) {
-        console.log('intersection',_.intersection(card.member,searchArray));
-        console.log('intersection',_.intersection(card.labels,searchArray));
-        if(_.intersection(card.member,searchArray).length > 0 || _.intersection(card.labels,searchArray).length > 0) {
+        if(_.intersection(card.member,searchArray.member).length > 0 || _.intersection(card.labels,searchArray.labels).length > 0) {
           searchResult.push(card);
         }
       });
