@@ -3,7 +3,7 @@
 
 angular.module('TrailApp', ['ngMaterial']);
 
-angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', function($scope, $timeout, $mdSidenav, $mdUtil, $filter){
+angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', 'TrelloSrv', function($scope, $timeout, $mdSidenav, $mdUtil, $filter, TrelloSrv){
   $scope.filterArray = [];
   $scope.toggleLeft = buildToggler('left');
   $scope.filterLabelsArray = [];
@@ -100,6 +100,12 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
       }
     });
   };
+  TrelloSrv.authorize();
+  TrelloSrv.load().then(function(data) {
+    console.log(data);
+  }, function(error) {
+    console.log(error);
+  });
 }]);
 
 angular.module('TrailApp').filter('cardFilter', function () {
