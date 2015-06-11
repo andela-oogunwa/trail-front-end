@@ -26,7 +26,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     if(selected){
       $scope.filterArray.push(id);
     } else {
-      $scope.filterArray.splice($scope.filterArray.indexOf(id),1);
+      $scope.filterArray.splice($scope.filterArray.idOf(id),1);
     }
   };
 
@@ -39,12 +39,9 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   };
 
 
-  $scope.toggleCards = function(index) {
-    $scope.cards[index].isOpen = !$scope.cards[index].isOpen;
-    angular.forEach($scope.cards, function(value, key) {
-      if (key !== index) {
-        value.isOpen = false;
-      }
+  $scope.toggleCards = function(id) {
+    angular.forEach($scope.cards, function(value) {
+      value.isOpen = value.id !== id ? false : true;
     });
   };
   TrelloSrv.authorize();
@@ -77,5 +74,5 @@ angular.module('TrailApp').filter('cardFilter', function () {
        return allCards;
     }
    };
-
 });
+

@@ -19,7 +19,7 @@
           <md-card ng-repeat="card in cards | cardFilter: filterArray">
           <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
             <md-card-content>
-              <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
+              <div layout="row" layout-align="space-between center" ng-click="toggleCards(card.id)" toggle-cards>
                 <h2 class="md-title" >{{card.name}}</h2>
                 <span class="okr-status">{{card.success}}</span>
               </div>

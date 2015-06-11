@@ -39,6 +39,7 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
       return $q(function(resolve) {
         data.cards.forEach(function(card) {
           var _card = {};
+          _card.id = card.id;
           _card.name = card.name;
           _card.desc = card.desc;
           _card.labels = [];
