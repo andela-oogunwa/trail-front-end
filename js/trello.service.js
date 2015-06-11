@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TrailApp').factory('TrelloSrv', ['$q', '$http', function($q, $http) {
+angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
   return {
     authorize: function() {
       var opts = {
@@ -33,6 +33,65 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', '$http', function($q, $ht
         };
         Trello.boards.get('I7Xkqbkn', opts, resolve, reject);
       });
+    },
+    processCards: function(data) {
+      var cards = [];
+      return $q(function(resolve) {
+        data.cards.forEach(function(card) {
+          var _card = {};
+          _card.name = card.name;
+          _card.desc = card.desc;
+          _card.labels = [];
+          card.labels.forEach(function(label) {
+            _card.labels.push(label.name);
+          });
+          _card.shortUrl = card.shortUrl;
+          _card.membersid = card.idMembers;
+          _card.tasks = [];
+          _card.keyResults = [];
+          _card.success = 'SUCCESS';
+          card.checklists.forEach(function(checklist) {
+            if (checklist.name === 'Tasks') {
+              checklist.checkItems.forEach(function(item) {
+                if (item.state === 'incomplete') {
+                  _card.success = 'FAILED';
+                }
+                _card.tasks.push({name: item.name, status: item.state});
+              });
+            } else {
+              checklist.checkItems.forEach(function(item) {
+                if (item.state === 'incomplete') {
+                  _card.success = 'FAILED';
+                }
+                _card.keyResults.push({name: item.name, status: item.state});
+              });
+            }
+          });
+          cards.push(_card);
+        });
+        resolve(cards);
+      });
+    },
+    processMembers: function (data) {
+      var members = [];
+      return $q(function(resolve) {
+        data.memberships.forEach(function(membership) {
+          var _member = {};
+          _member.id = membership.idMember;
+          _member.name = membership.member.fullName;
+          members.push(_member);
+        });
+        resolve(members);
+      });
+    },
+    processLabels: function(data) {
+      var labels = [];
+      return($q(function(resolve) {
+        data.labels.forEach(function(label) {
+          labels.push(label.name);
+        });
+        resolve(labels);
+      }));
     }
   };
 }]);

@@ -16,17 +16,20 @@
     <div layout="row" flex>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
-          <md-card ng-repeat="card in cards | cardFilter: filterLabelsArray">
+          <md-card ng-repeat="card in cards | cardFilter: filterArray">
           <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
             <md-card-content>
               <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
-                <h2 class="md-title" >{{card.title}}</h2>
-                <span class="okr-status">{{card.status}}</span>
+                <h2 class="md-title" >{{card.name}}</h2>
+                <span class="okr-status">{{card.success}}</span>
               </div>
                 <div layout="row" ng-show="card.isOpen" layout-wrap>
-                  <div flex="50">
-                    <md-checkbox ng-repeat="task in card.tasks" ng-model="data.ca1" aria-label="Checkbox 1">
-                      {{task}}
+                  <div flex>
+                    <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
+                      {{task.name}}
+                    </md-checkbox>
+                    <md-checkbox ng-repeat="keys in card.keyResults" ng-checked="keys.status === 'incomplete' ? false : true">
+                      {{keys.name}}
                     </md-checkbox>
                     <md-list ng-repeat='label in card.labels'>
                       {{label}}
@@ -50,7 +53,7 @@
           <div>
             <h2 class="md-title">Filter by member</h2>
 
-            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member, selected)">{{member}}</md-checkbox>
+            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member.id, selected)">{{member.name}}</md-checkbox>
           </div>
         </p>
         <p hide-md show-gt-md>
