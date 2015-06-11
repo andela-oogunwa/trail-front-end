@@ -3,19 +3,18 @@
 angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
   return {
     authorize: function() {
-      var opts = {
-        type: "popup",
-        name: "Andela Trail",
-        persist: true,
-        expiration: "never",
-        success: function() {
-          console.log('Authorized Trello');
-        },
-        error: function() {
-          console.log('Error Occured', arguments);
-        }
-      };
-      Trello.authorize(opts);
+      return $q(function(resolve, reject) {
+        var opts = {
+          type: "redirect",
+          name: "Andela Trail",
+          persist: true,
+          expiration: "never",
+          success: resolve,
+          error: reject
+        };
+        Trello.authorize(opts);
+        
+      });
     },
     load: function() {
       return $q(function(resolve, reject) {

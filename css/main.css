@@ -4,10 +4,73 @@
   margin: inherit;
 }
 
+.trail-name {
+  margin-left: 20% !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  letter-spacing: .005em !important;
+}
 .okr-status {
-    float: right;
-    color: green;
+  float: right;
+  color: green;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
 }
 .okr-status-failed {
-    color: red !important;
+  color: red !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+
+}
+
+#side-nav-button {
+  color: white;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+}
+
+.md-title, 
+.md-toolbar-tools {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+}
+
+.font-design {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.contents {
+  /*border: 1px solid black !important;*/
+  width: 60%;
+  margin: auto auto;
+}
+
+.filters{
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+}
+
+.filter-member{
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: .005em !important;
+}
+
+.member-name{
+  font-size: 14px;
+  font-weight: 300;
+}
+#md-sidenav-style {
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
+}
+.label-name {
+  font-size: 14px;
+  font-weight: 300;
 }

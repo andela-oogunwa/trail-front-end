@@ -2,6 +2,9 @@
 'use strict';
 
 angular.module('TrailApp', ['ngMaterial']);
+angular.module('TrailApp').run(function(TrelloSrv) {
+  TrelloSrv.authorize();
+});
 angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', 'TrelloSrv', function($scope, $timeout, $mdSidenav, $mdUtil, $filter, TrelloSrv){
   $scope.filterArray = [];
   $scope.allCardMembers = [];
@@ -25,7 +28,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     if(selected){
       $scope.filterArray.push(id);
     } else {
-      $scope.filterArray.splice($scope.filterArray.idOf(id),1);
+      $scope.filterArray.splice($scope.filterArray.indexOf(id),1);
     }
   };
 
@@ -39,11 +42,13 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
 
 
   $scope.toggleCards = function(id) {
-    angular.forEach($scope.cards, function(value) {
-      value.isOpen = value.id !== id ? false : true;
-    });
+    if(id === $scope.openCard) {
+      $scope.openCard = 'all close';
+      return;
+    }
+    $scope.openCard = id;
   };
-  TrelloSrv.authorize();
+
   TrelloSrv.load().then(function(data) {
     TrelloSrv.processMembers(data).then(function(members) {
       $scope.allCardMembers = members;

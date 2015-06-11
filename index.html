@@ -3,64 +3,67 @@
   <head>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta name="viewport" content="initial-scale=1"/>
   </head>
   <body ng-controller="MainCtrl">
     <md-toolbar layout="row" >
-      <div class="md-toolbar-tools" layout-align="space-between center">
-        <h1>Welcome to Trail</h1>
-        <md-button ng-click="toggleLeft()"class="md-primary">Toggle left</md-button>
+      <div class="md-toolbar-tools">
+        <i ng-click="toggleLeft()" class="md-primary fa fa-bars fa-lg" id='side-nav-button'></i></md-button>
+        <h1 class="trail-name">Welcome to Trail</h1>
       </div>
     </md-toolbar>
-    <div layout="row" flex>
-      <div layout="column" flex id="content">
-        <md-content layout="column" flex class="md-padding">
-          <md-card ng-repeat="card in cards | cardFilter: filterArray">
-          <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
-            <md-card-content>
-              <div layout="row" layout-align="space-between center" ng-click="toggleCards(card.id)" toggle-cards>
-                <h2 class="md-title" >{{card.name}}</h2>
-                <span class="okr-status">{{card.success}}</span>
-              </div>
-                <div layout="row" ng-show="card.isOpen" layout-wrap>
-                  <div flex>
-                    <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
-                      {{task.name}}
-                    </md-checkbox>
-                    <md-checkbox ng-repeat="keys in card.keyResults" ng-checked="keys.status === 'incomplete' ? false : true">
-                      {{keys.name}}
-                    </md-checkbox>
-                    <md-list ng-repeat='label in card.labels'>
-                      {{label}}
-                    </md-list>
-                  </div>
+    <div class="contents">
+      <div layout="row" flex>
+        <div layout="column" flex id="content">
+          <md-content layout="column" flex class="md-padding">
+            <md-card ng-repeat="card in cards | cardFilter: filterArray">
+            <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
+              <md-card-content>
+                <div layout="row" layout-align="space-between center" ng-click="toggleCards(card.id)" toggle-cards>
+                  <h2 class="md-title" >{{card.name}}</h2>
+                  <span class="okr-status" ng-class="{'okr-status-failed': card.success === 'FAILED'}">{{card.success}}</span>
                 </div>
-            </md-card-content>
-          </md-card>
-        </md-content>
+                  <div layout="row" ng-if="card.id === openCard" layout-wrap>
+                    <div flex class="font-design">
+                      <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
+                        {{task.name}}
+                      </md-checkbox>
+                      <md-checkbox ng-repeat="keys in card.keyResults" ng-checked="keys.status === 'incomplete' ? false : true">
+                        {{keys.name}}
+                      </md-checkbox>
+                      <md-list ng-repeat='label in card.labels'>
+                        {{label}}
+                      </md-list>
+                    </div>
+                  </div>
+              </md-card-content>
+            </md-card>
+          </md-content>
+        </div>
       </div>
     </div>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z1" id='md-sidenav-style' md-component-id="left">
       <md-toolbar>
         <!-- TO-DO: add a close button -->
-        <h1 class="md-toolbar-tools">
+        <h1 class="md-toolbar-tools filters">
           Filters
         </h1>
       </md-toolbar>
       <md-content layout-padding>
         <p hide-md show-gt-md>
           <div>
-            <h2 class="md-title">Filter by member</h2>
+            <h2 class="md-title filter-member">Filter by department</h2>
 
-            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member.id, selected)">{{member.name}}</md-checkbox>
+            <md-checkbox  ng-repeat="label in allCardLabels" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
           </div>
         </p>
         <p hide-md show-gt-md>
           <div>
-            <h2 class="md-title">Filter by label</h2>
+            <h2 class="md-title filter-member">Filter by member</h2>
 
-            <md-checkbox  ng-repeat="label in allCardLabels" ng-model='selected' ng-change="filterLabel(label, selected)">{{label}}</md-checkbox>
+            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
           </div>
         </p>
       </md-content>
