@@ -2,13 +2,13 @@
 'use strict';
 
 angular.module('TrailApp', ['ngMaterial']);
-
-angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', function($scope, $timeout, $mdSidenav, $mdUtil, $filter){
-  $scope.filterArray = {
-    'member': [],
-    'labels': []
-  };
+angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', 'TrelloSrv', function($scope, $timeout, $mdSidenav, $mdUtil, $filter, TrelloSrv){
+  $scope.filterArray = [];
+  $scope.allCardMembers = [];
+  $scope.allCardLabels = [];
   $scope.toggleLeft = buildToggler('left');
+  $scope.filterLabelsArray = [];
+  $scope.cards = [];
 
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
@@ -21,97 +21,50 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     $mdSidenav('left').close();
   };
 
-  $scope.filterMember = function(member, selected) {
-
+  $scope.filterMember = function(id, selected) {
     if(selected){
-      $scope.filterArray.member.push(member);
+      $scope.filterArray.push(id);
     } else {
-      $scope.filterArray.member.splice($scope.filterArray.member.indexOf(member),1);
+      $scope.filterArray.splice($scope.filterArray.idOf(id),1);
     }
   };
 
   $scope.filterLabel = function(label, selected) {
     if(selected){
-      $scope.filterArray.labels.push(label);
+      $scope.filterArray.push(label);
     } else {
-      $scope.filterArray.labels.splice($scope.filterArray.labels.indexOf(label),1);
+      $scope.filterArray.splice($scope.filterArray.indexOf(label),1);
     }
   };
 
 
-  $scope.cards = [{
-    title: 'Convene and engage community',
-    status: 'SUCCESS',
-    member: ['Abimbola Idowu','Fadekemi Ogunwa'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
-    labels:['Success', 'Ops']
-  }, {
-    title: 'book speaking roles to drive income leads',
-    status: 'SUCCESS',
-    member: ['Abimbola Idowu', 'Nadayar Enegesi'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
-    labels:['marketing and comms', 'Ops']
-  }, {
-    title: 'book speaking roles to drive income leads',
-    status: 'SUCCESS',
-    member: ['Nad Brice'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
-    labels:['Seeking help','failed','professional development']
-  }, {
-    title: 'Train young software developers',
-    status: 'SUCCESS',
-    member: ['Fadekemi Ogunwa', 'Abimbola Idowu'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
-    labels:['failed']
-  }, {
-    title: 'book speaking roles to drive income leads',
-    status: 'SUCCESS',
-    member: ['Obie Fernandez', 'Christina Sass'],
-    tasks: ['Double the number of major events produced from previous year', 'Craft a 3-minute stump speech', 'Craft a 5-minutes stump speech', 'Double high level engagment iwth twice-monthly email communications'],
-    labels:['Success','failed','Seeking help','professional development']
-  }];
-  $scope.allMembers = [];
-  $scope.allCardMembers = [];
-  $scope.allLabels = [];
-  $scope.allCardLabels = [];
-
-  _.forEach($scope.cards,function(card) {
-    $scope.allMembers.push(card.member);
-  });
-
-  if($scope.allMembers) {
-    $scope.allCardMembers = _.uniq($scope.allCardMembers.concat.apply($scope.allCardMembers, $scope.allMembers));
-  };
-
-  console.log('allCardMembers', $scope.allCardMembers);
-
-
-  _.forEach($scope.cards, function(card){
-    $scope.allLabels.push(card.labels);
-  });
-
-  if($scope.allLabels) {
-    $scope.allCardLabels = _.uniq($scope.allCardLabels.concat.apply($scope.allCardLabels, $scope.allLabels));
-  };
-
-  $scope.toggleCards = function(index) {
-    $scope.cards[index].isOpen = !$scope.cards[index].isOpen;
-    angular.forEach($scope.cards, function(value, key) {
-      if (key !== index) {
-        value.isOpen = false;
-      }
+  $scope.toggleCards = function(id) {
+    angular.forEach($scope.cards, function(value) {
+      value.isOpen = value.id !== id ? false : true;
     });
   };
+  TrelloSrv.authorize();
+  TrelloSrv.load().then(function(data) {
+    TrelloSrv.processMembers(data).then(function(members) {
+      $scope.allCardMembers = members;
+    });
+    TrelloSrv.processLabels(data).then(function(labels) {
+      $scope.allCardLabels = labels;
+    });
+    TrelloSrv.processCards(data).then(function(cards) {
+      $scope.cards = cards;
+    });
+  }, function(error) {
+    console.log(error);
+  });
 }]);
 
 angular.module('TrailApp').filter('cardFilter', function () {
   return function (allCards, searchArray) {
-    console.log('called with',searchArray);
-    var searchArrayCondition = searchArray.member.length || searchArray.labels.length;
-    if (!angular.isUndefined(allCards) && !angular.isUndefined(searchArray) && searchArrayCondition > 0) {
+    if (!angular.isUndefined(allCards) && !angular.isUndefined(searchArray) && searchArray.length > 0) {
       var searchResult = [];
       _.forEach(allCards, function (card) {
-        if(_.intersection(card.member,searchArray.member).length > 0 || _.intersection(card.labels,searchArray.labels).length > 0) {
+        if(_.intersection(card.membersid,searchArray).length > 0 || _.intersection(card.labels,searchArray).length > 0) {
           searchResult.push(card);
         }
       });
@@ -120,11 +73,5 @@ angular.module('TrailApp').filter('cardFilter', function () {
        return allCards;
     }
    };
-
 });
-
-
-
-
-
 

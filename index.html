@@ -19,14 +19,17 @@
           <md-card ng-repeat="card in cards | cardFilter: filterArray">
           <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
             <md-card-content>
-              <div layout="row" layout-align="space-between center" ng-click="toggleCards($index)">
-                <h2 class="md-title" >{{card.title}}</h2>
-                <span class="okr-status">{{card.status}}</span>
+              <div layout="row" layout-align="space-between center" ng-click="toggleCards(card.id)" toggle-cards>
+                <h2 class="md-title" >{{card.name}}</h2>
+                <span class="okr-status">{{card.success}}</span>
               </div>
                 <div layout="row" ng-show="card.isOpen" layout-wrap>
-                  <div flex="50">
-                    <md-checkbox ng-repeat="task in card.tasks" ng-model="data.ca1" aria-label="Checkbox 1">
-                      {{task}}
+                  <div flex>
+                    <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
+                      {{task.name}}
+                    </md-checkbox>
+                    <md-checkbox ng-repeat="keys in card.keyResults" ng-checked="keys.status === 'incomplete' ? false : true">
+                      {{keys.name}}
                     </md-checkbox>
                     <md-list ng-repeat='label in card.labels'>
                       {{label}}
@@ -50,7 +53,7 @@
           <div>
             <h2 class="md-title">Filter by member</h2>
 
-            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member, selected)">{{member}}</md-checkbox>
+            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member.id, selected)">{{member.name}}</md-checkbox>
           </div>
         </p>
         <p hide-md show-gt-md>
@@ -63,11 +66,15 @@
       </md-content>
     </md-sidenav>
     <!-- Angular Material Dependencies -->
+    <!-- The client library requires jQuery  -->
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://api.trello.com/1/client.js?key=856a958ea5314dd93e14e7602783fc7c"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
     <script src="lib/underscore/underscore.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/trello.service.js"></script>
   </body>
 </html>
