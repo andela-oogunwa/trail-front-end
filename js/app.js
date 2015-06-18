@@ -49,12 +49,28 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     $scope.openCard = id;
   };
 
-  $scope.showCardDetails = function(env) {
+  $scope.showCardDetails = function(env, card) {
     $mdDialog.show({
-      controller: DialogController,
-      template: '<p>Hello Bae</p>',
-      parent: angular.element(document.body),
-      targetEvent: env,
+
+      controller: function DialogController($scope, $mdDialog) {
+
+        $scope.card  = card;
+        
+        $scope.hide = function() {
+          $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+          $mdDialog.hide(answer);
+        };
+      },
+      templateUrl: 'partials/cardDetails.tmpl.html',
+      // parent: angular.element(document.body),
+      targetEvent: env
     })
     .then(function(answer) {
       $scope.alert = 'You said the information was "' + answer + '".';
@@ -62,6 +78,8 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
       $scope.alert = 'You cancelled the dialog.';
     });
   };
+
+
   TrelloSrv.load().then(function(data) {
     TrelloSrv.processMembers(data).then(function(members) {
       $scope.allCardMembers = members;
@@ -77,19 +95,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   });
 }]);
 
-function DialogController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
 
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
-}
 angular.module('TrailApp').filter('cardFilter', function () {
   return function (allCards, searchArray) {
     if (!angular.isUndefined(allCards) && !angular.isUndefined(searchArray) && searchArray.length > 0) {

@@ -13,16 +13,20 @@
 .okr-status {
   float: right;
   color: green;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 300 !important;
   letter-spacing: .005em !important;
 }
 .okr-status-failed {
   color: red !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 300 !important;
   letter-spacing: .005em !important;
 
+}
+
+.md-no-sticky {
+  font-size: 20px !important;
 }
 
 #side-nav-button {
@@ -36,6 +40,33 @@
   font-size: 16px !important;
   font-weight: 300 !important;
   letter-spacing: .005em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  padding-right: 50px;
+}
+
+.md-title {
+  margin: 0 !important;
+}
+
+.label {
+  font-size: 0.7em !important;
+  display: inline-block;
+  padding: 3px 7px;
+  background-color: slategrey;
+  color: #fff !important;
+  margin-right: 5px !important;
+}
+
+.modal-dialog {
+  width: 50%;
+}
+.close-modal {
+  color: white;
+  background-color: #3051B7;
+  width:50%;
+  margin: 0 25% 2% 25%;
 }
 
 .font-design {

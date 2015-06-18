@@ -54,14 +54,14 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
             if (checklist.name === 'Tasks') {
               checklist.checkItems.forEach(function(item) {
                 if (item.state === 'incomplete') {
-                  _card.success = 'FAILED';
+                  _card.success = 'INCOMPLETE';
                 }
                 _card.tasks.push({name: item.name, status: item.state});
               });
             } else {
               checklist.checkItems.forEach(function(item) {
                 if (item.state === 'incomplete') {
-                  _card.success = 'FAILED';
+                  _card.success = 'INCOMPLETE';
                 }
                 _card.keyResults.push({name: item.name, status: item.state});
               });
