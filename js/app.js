@@ -55,7 +55,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
       controller: function DialogController($scope, $mdDialog) {
 
         $scope.card  = card;
-        
+
         $scope.hide = function() {
           $mdDialog.hide();
         };
@@ -88,6 +88,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
       $scope.allCardLabels = labels;
     });
     TrelloSrv.processCards(data).then(function(cards) {
+      console.log(cards);
       $scope.cards = cards;
     });
   }, function(error) {

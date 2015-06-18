@@ -18,61 +18,20 @@
       <div layout="row" flex>
         <div layout="column" flex id="content">
           <md-content layout="column" flex class="md-padding">
-              <md-list>
-                <!-- <md-subheader class="md-no-sticky">3 line item</md-subheader>
-                <md-list-item class="md-3-line" ng-repeat="item in todos">
-                  <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
-                  <div class="md-list-item-text">
-                    <h3>{{ item.who }}</h3>
-                    <h4>{{ item.what }}</h4>
-                    <p>{{ item.notes }}</p>
+            <md-list>
+              <md-subheader class="md-no-sticky">OKR RESULTS</md-subheader>
+              <md-divider ></md-divider>
+              <md-list-item class="md-2-line" ng-repeat="card in cards | cardFilter: filterArray" ng-click="showCardDetails($event,card)">
+                <img ng-src="https://avatars3.githubusercontent.com/u/10053760?v=3&s=460" class="md-avatar" alt="" style="display:inline"/>
+                <div class="md-list-item-text">
+                  <div layout="row" layout-align="start center">
+                    <h3 class="md-title" style="display:inline" flex>{{card.name}}</h3> 
+                    <span class="okr-status" ng-class="{'okr-status-failed': card.success === 'INCOMPLETE'}" style="display:inline">{{card.success}}</span>
                   </div>
-                </md-list-item> -->
-                <!-- <md-divider ></md-divider> -->
-                <md-subheader class="md-no-sticky">OKR RESULTS</md-subheader>
-                <md-divider ></md-divider>
-                <md-list-item class="md-2-line" ng-repeat="card in cards | cardFilter: filterArray" ng-click="showCardDetails($event,card)">
-                  <img ng-src="https://avatars3.githubusercontent.com/u/10053760?v=3&s=460" class="md-avatar" alt="" style="display:inline"/>
-                  <div class="md-list-item-text">
-                    <div layout="row" layout-align="start center">
-                      <h3 class="md-title" style="display:inline" flex>{{card.name}}</h3> 
-                      <span class="okr-status" ng-class="{'okr-status-failed': card.success === 'INCOMPLETE'}" style="display:inline">{{card.success}}</span>
-                    </div>
-                    <p ng-repeat="label in card.labels" class="label">{{label}}</p>
-                    <md-divider ></md-divider>
-                  </div>
-                </md-list-item>
-                <!-- <md-subheader class="md-no-sticky">3 line item, long paragraph (see on mobile)</md-subheader>
-                <md-list-item class="md-3-line"> -->
-                  <!-- <img ng-src="{{todos[0].face}}?25" class="md-avatar" alt="{{todos[0].who}}" /> -->
-                  <!-- <div class="md-list-item-text">
-                    <h3>Fadekemi</h3>
-                    <p>Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.</p>
-                  </div>
-                </md-list-item> -->
-              <!-- </md-list> -->
-            <md-card ng-repeat="card in cards | cardFilter: filterArray">
-            <!-- <md-card ng-repeat="card in cards | labelFilter: filterLabelsArray"> -->
-              <!-- <md-card-content>
-                <div layout="row" layout-align="space-between center" ng-click="toggleCards(card.id)" toggle-cards>
-                  <h2 class="md-title" >{{card.name}}</h2>
-                  <span class="okr-status" ng-class="{'okr-status-failed': card.success === 'FAILED'}">{{card.success}}</span>
+                  <p ng-repeat="label in card.labels" class="label">{{label}}</p>
+                  <md-divider ></md-divider>
                 </div>
-                  <div layout="row" ng-if="card.id === openCard" layout-wrap>
-                    <div flex class="font-design">
-                      <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
-                        {{task.name}}
-                      </md-checkbox>
-                      <md-checkbox ng-repeat="keys in card.keyResults" ng-checked="keys.status === 'incomplete' ? false : true">
-                        {{keys.name}}
-                      </md-checkbox>
-                      <md-list ng-repeat='label in card.labels'>
-                        {{label}}
-                      </md-list>
-                    </div>
-                  </div>
-              </md-card-content> -->
-            </md-card>
+              </md-list-item>
           </md-content>
         </div>
       </div>
