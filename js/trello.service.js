@@ -78,15 +78,21 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
       });
     },
     processMembers: function (data) {
-      var members = [];
+      var members = [], avatarHash = {}, initials = {};
       return $q(function(resolve) {
         data.memberships.forEach(function(membership) {
           var _member = {};
           _member.id = membership.idMember;
           _member.name = membership.member.fullName;
+          avatarHash[membership.idMember] = membership.member.avatarHash ? 'https://trello-avatars.s3.amazonaws.com/' + membership.member.avatarHash + '/170.png' : null;
+          initials[membership.idMember] = membership.member.initials;
           members.push(_member);
         });
-        resolve(members);
+        var result = {};
+        result.members = members;
+        result.avatarHash = avatarHash;
+        result.initials = initials;
+        resolve(result);
       });
     },
     processLabels: function(data) {

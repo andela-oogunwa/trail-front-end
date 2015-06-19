@@ -5,14 +5,19 @@ angular.module('TrailApp', ['ngMaterial']);
 angular.module('TrailApp').run(function(TrelloSrv) {
   TrelloSrv.authorize();
 });
-angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', 'TrelloSrv', '$mdDialog', function($scope, $timeout, $mdSidenav, $mdUtil, $filter, TrelloSrv, $mdDialog){
+angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', 'TrelloSrv', '$mdDialog', '$interpolate', function($scope, $timeout, $mdSidenav, $mdUtil, $filter, TrelloSrv, $mdDialog, $interpolate){
   $scope.filterArray = [];
   $scope.allCardMembers = [];
   $scope.allCardLabels = [];
   $scope.toggleLeft = buildToggler('left');
   $scope.filterLabelsArray = [];
   $scope.cards = [];
-
+  $scope.initials = {};
+  $scope.avatarHash = {};
+  $scope.interpolate = function (value) {
+    console.log(value);
+    return $interpolate(value)($scope);
+  };
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
           $mdSidenav(navID)
@@ -81,8 +86,11 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
 
 
   TrelloSrv.load().then(function(data) {
-    TrelloSrv.processMembers(data).then(function(members) {
-      $scope.allCardMembers = members;
+    TrelloSrv.processMembers(data).then(function(result) {
+      $scope.initials = result.initials;
+      console.log(result.avatarHash);
+      $scope.avatarHash = result.avatarHash;
+      $scope.allCardMembers = result.members;
     });
     TrelloSrv.processLabels(data).then(function(labels) {
       $scope.allCardLabels = labels;

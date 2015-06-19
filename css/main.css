@@ -114,3 +114,15 @@ span > i {
   padding: 0 3px;
   margin-right: 3px;
 }
+
+.member-initials {
+  background-color: #d6dadc;
+  margin: 8px 16px 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  height: 33px;
+  line-height: 33px;
+  text-align: center;
+  width: 30px;
+  border-radius: 20%;
+}
