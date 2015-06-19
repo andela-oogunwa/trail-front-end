@@ -5,13 +5,9 @@
         <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
           {{task.name}}
         </md-checkbox>
-        <md-checkbox ng-repeat="keys in card.keyResults" ng-checked="keys.status === 'incomplete' ? false : true">
-          {{keys.name}}
-        </md-checkbox>
       </div>
     </div>
     <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
     <md-button ng-click="hide()" class='close-modal'>Close</md-button>
   </md-content>
 </md-dialog>
-<!-- <div>{{cards}}</div> -->

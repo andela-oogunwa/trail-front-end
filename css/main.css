@@ -109,3 +109,8 @@
 .modal-dialog md-progress-linear {
   margin-bottom: 5%;
 }
+
+span > i {
+  padding: 0 3px;
+  margin-right: 3px;
+}
