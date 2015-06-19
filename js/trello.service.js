@@ -13,7 +13,7 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
           error: reject
         };
         Trello.authorize(opts);
-        
+
       });
     },
     load: function() {
@@ -36,6 +36,7 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
     processCards: function(data) {
       var cards = [];
       return $q(function(resolve) {
+        data.cards.splice(0, 6);
         data.cards.forEach(function(card) {
           var _card = {};
           _card.id = card.id;
