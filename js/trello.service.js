@@ -50,25 +50,23 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
           _card.membersid = card.idMembers;
           _card.tasks = [];
           _card.keyResults = [];
-          _card.taskCompleted = 0;
+          _card.progress = 0;
           // _card.success = 'COMPLETE';
           card.checklists.forEach(function(checklist) {
             var completed;
             if (checklist.name === 'Tasks') {
-              checklist.checkItems.forEach(function(item) {
                 completed = 0;
+              checklist.checkItems.forEach(function(item) {
                 if (item.state === 'complete') {
                   completed++;
-                  // _card.success = 'INCOMPLETE';
                 }
-                _card.taskCompleted = Math.round(completed/checklist.checkItems.length) * 100;
                 _card.tasks.push({name: item.name, status: item.state});
               });
+                _card.progress = Math.round((completed/checklist.checkItems.length) * 100);
             } else {
               checklist.checkItems.forEach(function(item) {
                 completed = 0;
                 if (item.state === 'incomplete') {
-                  // _card.success = 'INCOMPLETE';
                 }
                 _card.keyResults.push({name: item.name, status: item.state});
               });
