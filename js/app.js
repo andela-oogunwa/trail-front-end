@@ -88,7 +88,6 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   TrelloSrv.load().then(function(data) {
     TrelloSrv.processMembers(data).then(function(result) {
       $scope.initials = result.initials;
-      console.log(result.avatarHash);
       $scope.avatarHash = result.avatarHash;
       $scope.allCardMembers = result.members;
     });

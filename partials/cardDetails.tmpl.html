@@ -2,6 +2,9 @@
   <md-content>
     <div layout="row" layout-wrap>
       <div flex class="font-design">
+        <div layout="row" layout-padding layout-align="end end">
+          <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><i class="fa fa-external-link"></i></a>
+        </div>
         <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true">
           {{task.name}}
         </md-checkbox>
