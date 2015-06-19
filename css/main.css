@@ -35,7 +35,7 @@
   letter-spacing: .005em !important;
 }
 
-.md-title, 
+.md-title,
 .md-toolbar-tools {
   font-size: 16px !important;
   font-weight: 300 !important;
@@ -104,4 +104,8 @@
 .label-name {
   font-size: 14px;
   font-weight: 300;
+}
+
+.modal-dialog md-progress-linear {
+  margin-bottom: 5%;
 }

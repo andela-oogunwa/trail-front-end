@@ -53,7 +53,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     $mdDialog.show({
 
       controller: function DialogController($scope, $mdDialog) {
-
+        $scope.mode = 'determinate';
         $scope.card  = card;
 
         $scope.hide = function() {
