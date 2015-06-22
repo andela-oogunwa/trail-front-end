@@ -35,6 +35,20 @@
   letter-spacing: .005em !important;
 }
 
+md-checkbox .md-container {
+  top: 13px !important;
+}
+
+md-checkbox .md-label span {
+  margin-left: 0;
+
+}
+
+md-checkbox .md-label {
+  padding-left: 15px;
+
+}
+
 .md-title,
 .md-toolbar-tools {
   font-size: 16px !important;
