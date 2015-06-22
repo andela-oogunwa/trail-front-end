@@ -46,6 +46,13 @@
   padding-right: 50px;
 }
 
+.check-box {
+  letter-spacing: .005em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
 .md-title {
   margin: 0 !important;
 }
