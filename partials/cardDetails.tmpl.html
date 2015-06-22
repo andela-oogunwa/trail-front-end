@@ -1,0 +1,16 @@
+<md-dialog class="modal-dialog">
+  <md-content>
+    <div layout="row" layout-wrap>
+      <div flex class="font-design">
+        <div layout="row" layout-padding layout-align="end end">
+          <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><i class="fa fa-external-link"></i></a>
+        </div>
+        <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
+          {{task.name}}
+        </md-checkbox>
+      </div>
+    </div>
+    <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+    <md-button ng-click="hide()" class='close-modal'>Close</md-button>
+  </md-content>
+</md-dialog>

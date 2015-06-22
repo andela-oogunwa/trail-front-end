@@ -1,0 +1,156 @@
+.md-toolbar-tools h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: inherit;
+}
+
+.trail-name {
+  margin-left: 20% !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  letter-spacing: .005em !important;
+}
+.okr-status {
+  float: right;
+  color: green;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+}
+.okr-status-failed {
+  color: red !important;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+
+}
+
+.md-no-sticky {
+  font-size: 20px !important;
+}
+
+#side-nav-button {
+  color: white;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+}
+
+md-checkbox .md-container {
+  top: 13px !important;
+}
+
+md-checkbox .md-label span {
+  margin-left: 0;
+
+}
+
+md-checkbox .md-label {
+  padding-left: 15px;
+
+}
+
+.md-title,
+.md-toolbar-tools {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  padding-right: 50px;
+}
+
+.check-box {
+  font-size: 12px !important;
+  font-weight: 200 !important;
+  letter-spacing: .005em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  /*padding-right: 50px;*/
+}
+
+.md-title {
+  margin: 0 !important;
+}
+
+.label {
+  font-size: 0.7em !important;
+  display: inline-block;
+  padding: 3px 7px;
+  background-color: slategrey;
+  color: #fff !important;
+  margin-right: 5px !important;
+}
+
+.modal-dialog {
+  width: 50%;
+}
+.close-modal {
+  color: white;
+  background-color: #3051B7;
+  width:50%;
+  margin: 0 25% 2% 25%;
+}
+
+.font-design {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.contents {
+  /*border: 1px solid black !important;*/
+  width: 60%;
+  margin: auto auto;
+}
+
+.filters{
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: .005em !important;
+}
+
+.filter-member{
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: .005em !important;
+}
+
+.member-name{
+  font-size: 14px;
+  font-weight: 300;
+}
+#md-sidenav-style {
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
+}
+.label-name {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.modal-dialog md-progress-linear {
+  margin-bottom: 5%;
+}
+
+span > i {
+  padding: 0 3px;
+  margin-right: 3px;
+}
+
+.member-initials {
+  background-color: #d6dadc;
+  margin: 8px 16px 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  height: 33px;
+  line-height: 33px;
+  text-align: center;
+  width: 30px;
+  border-radius: 20%;
+}
+
+.ng-cloak {
+  display: none !important;
+}
