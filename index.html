@@ -40,7 +40,10 @@
                         </i>
                       </span>
                     </div>
-                    <p ng-repeat="label in card.labels" class="label">{{label}}</p>
+                    <div layout="row">
+                      <p ng-repeat="label in card.labels" class="label">{{label}}</p>
+                      <p layout-margin>{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
+                    </div>
                     <md-divider ></md-divider>
                   </div>
                 </md-list-item>
