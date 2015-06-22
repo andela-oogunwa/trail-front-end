@@ -15,6 +15,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   $scope.isLoading = true;
   $scope.initials = {};
   $scope.avatarHash = {};
+  $scope.mode = 'determinate';
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
           $mdSidenav(navID)

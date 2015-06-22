@@ -43,6 +43,9 @@
                     <div layout="row">
                       <p ng-repeat="label in card.labels" class="label">{{label}}</p>
                       <p layout-margin>{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
+                      <div flex="33" layout-margin layout-align="space-between">
+                        <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+                      </div>
                     </div>
                     <md-divider ></md-divider>
                   </div>

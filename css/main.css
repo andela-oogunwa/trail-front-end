@@ -172,3 +172,16 @@ span > i {
   background-color: #0C88FF !important;
   color: #fff;
 }
+
+md-progress-linear .md-container, md-progress-linear .md-bar {
+  height: 7px !important;
+  border-radius: 100px !important;
+}
+
+md-progress-linear .md-container {
+  background-color: #919692 !important;
+}
+
+md-progress-linear .md-bar{
+  background-color: #00E600 !important;
+}
