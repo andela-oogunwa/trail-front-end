@@ -12,6 +12,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   $scope.toggleLeft = buildToggler('left');
   $scope.filterLabelsArray = [];
   $scope.cards = [];
+  $scope.isLoading = true;
   $scope.initials = {};
   $scope.avatarHash = {};
   function buildToggler(navID) {
@@ -86,6 +87,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
       $scope.initials = result.initials;
       $scope.avatarHash = result.avatarHash;
       $scope.allCardMembers = result.members;
+      $scope.isLoading = false;
     });
     TrelloSrv.processLabels(data).then(function(labels) {
       $scope.allCardLabels = labels;

@@ -21,25 +21,30 @@
             <md-list>
               <md-subheader class="md-no-sticky">OKR RESULTS</md-subheader>
               <md-divider ></md-divider>
-              <md-list-item class="md-2-line" ng-repeat="card in cards | cardFilter: filterArray" ng-click="showCardDetails($event,card)">
-                <img ng-if="avatarHash[card.membersid[0]]" ng-src="{{avatarHash[card.membersid[0]]}}" class="md-avatar" alt="" style="display:inline"/>
-                <span class="member-initials" ng-if="!avatarHash[card.membersid[0]]">{{initials[card.membersid[0]]}}</span>
-                <div class="md-list-item-text">
-                  <div layout="row" layout-align="start center">
-                    <h3 class="md-title" style="display:inline" flex>{{card.name}}</h3>
-                    <span ng-repeat="key in card.keyResults">
-                      <i class="fa fa-check" ng-if="key.status === 'complete'">
-                        <md-tooltip>{{key.name}}</md-tooltip>
-                      </i>
-                      <i class="fa fa-question" ng-if="key.status === 'incomplete'">
-                        <md-tooltip>{{key.name}}</md-tooltip>
-                      </i>
-                    </span>
+              <div layout="row" ng-show="isLoading" layout-sm="column" layout-align="space-around" style="position:fixed; top: 50%; left:50%;">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+              </div>
+              <div ng-hide="isLoading">
+                <md-list-item class="md-2-line" ng-repeat="card in cards | cardFilter: filterArray" ng-click="showCardDetails($event,card)">
+                  <img ng-if="avatarHash[card.membersid[0]]" ng-src="{{avatarHash[card.membersid[0]]}}" class="md-avatar" alt="" style="display:inline"/>
+                  <span class="member-initials" ng-if="!avatarHash[card.membersid[0]]">{{initials[card.membersid[0]]}}</span>
+                  <div class="md-list-item-text">
+                    <div layout="row" layout-align="start center">
+                      <h3 class="md-title" style="display:inline" flex>{{card.name}}</h3>
+                      <span ng-repeat="key in card.keyResults">
+                        <i class="fa fa-check" ng-if="key.status === 'complete'">
+                          <md-tooltip>{{key.name}}</md-tooltip>
+                        </i>
+                        <i class="fa fa-question" ng-if="key.status === 'incomplete'">
+                          <md-tooltip>{{key.name}}</md-tooltip>
+                        </i>
+                      </span>
+                    </div>
+                    <p ng-repeat="label in card.labels" class="label">{{label}}</p>
+                    <md-divider ></md-divider>
                   </div>
-                  <p ng-repeat="label in card.labels" class="label">{{label}}</p>
-                  <md-divider ></md-divider>
-                </div>
-              </md-list-item>
+                </md-list-item>
+              </div>
           </md-content>
         </div>
       </div>
