@@ -47,10 +47,13 @@
 }
 
 .check-box {
+  font-size: 12px !important;
+  font-weight: 200 !important;
   letter-spacing: .005em !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  /*padding-right: 50px;*/
 }
 
 .md-title {
