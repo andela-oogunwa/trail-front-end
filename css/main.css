@@ -48,6 +48,10 @@ md-checkbox .md-label {
 
 }
 
+.modal-name {
+  font-size: 14px !important;
+}
+
 .md-title,
 .md-toolbar-tools {
   font-size: 16px !important;

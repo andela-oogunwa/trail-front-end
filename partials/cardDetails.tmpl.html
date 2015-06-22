@@ -3,7 +3,7 @@
     <div layout="row" layout-wrap>
       <div flex class="font-design">
         <md-content layout-margin>
-          <h2 class="md-title" style="font-weight: 500 !important;" flex>{{card.name}}</h2>
+          <h2 class="modal-name" style="font-weight: 500 !important;" flex>{{card.name}}</h2>
         </md-content>
         <h3 class="md-subhead" layout-margin layout-padding>Tasks</h3>
         <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
