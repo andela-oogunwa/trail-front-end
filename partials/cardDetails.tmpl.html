@@ -2,15 +2,24 @@
   <md-content>
     <div layout="row" layout-wrap>
       <div flex class="font-design">
-        <div layout="row" layout-padding layout-align="end end">
-          <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><i class="fa fa-external-link"></i></a>
-        </div>
+        <md-content layout-margin>
+          <h2 class="md-title" style="font-weight: 500 !important;" flex>{{card.name}}</h2>
+        </md-content>
+        <h3 class="md-subhead" layout-margin layout-padding>Tasks</h3>
         <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
           {{task.name}}
+        </md-checkbox>
+        <md-divider></md-divider>
+        <h3 class="md-subhead" layout-margin layout-padding>Key Results</h3>
+        <md-checkbox ng-repeat="result in card.keyResults" ng-checked="result.status === 'incomplete' ? false : true" flex class="check-box">
+          {{result.name}}
         </md-checkbox>
       </div>
     </div>
     <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
-    <md-button ng-click="hide()" class='close-modal'>Close</md-button>
+    <section layout="row" layout-sm="column" layout-align="center center">
+      <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><md-button class="custom-button"> Open in Trello </md-button></a>
+      <md-button ng-click="hide()" class='close-modal'>Close</md-button>
+    </section>
   </md-content>
 </md-dialog>

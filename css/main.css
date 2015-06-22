@@ -22,7 +22,6 @@
   font-size: 14px !important;
   font-weight: 300 !important;
   letter-spacing: .005em !important;
-
 }
 
 .md-no-sticky {
@@ -67,7 +66,6 @@ md-checkbox .md-label {
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  /*padding-right: 50px;*/
 }
 
 .md-title {
@@ -89,8 +87,9 @@ md-checkbox .md-label {
 .close-modal {
   color: white;
   background-color: #3051B7;
-  width:50%;
-  margin: 0 25% 2% 25%;
+  width:33%;
+  margin-left: 22%;
+  margin-right: 22%;
 }
 
 .font-design {
@@ -99,7 +98,6 @@ md-checkbox .md-label {
 }
 
 .contents {
-  /*border: 1px solid black !important;*/
   width: 60%;
   margin: auto auto;
 }
@@ -161,4 +159,16 @@ span > i {
 
 .checked {
   color: #33dd11;
+}
+
+.custom-button {
+  border-radius: 100px !important;
+  border: 3px solid #0C88FF;
+  color: #0C88FF;
+  background-color: #fff
+}
+
+.custom-button:hover {
+  background-color: #0C88FF !important;
+  color: #fff;
 }
