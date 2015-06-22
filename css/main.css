@@ -150,3 +150,7 @@ span > i {
   width: 30px;
   border-radius: 20%;
 }
+
+.ng-cloak {
+  display: none !important;
+}
