@@ -59,16 +59,16 @@
       <md-content layout-padding>
         <p hide-md show-gt-md>
           <div>
-            <h2 class="md-title filter-member">Filter by department</h2>
+            <h2 class="md-title filter-member">Filter by label</h2>
 
-            <md-checkbox  ng-repeat="label in allCardLabels" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
+            <md-checkbox  ng-repeat="label in allCardLabels | orderBy: label" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
           </div>
         </p>
         <p hide-md show-gt-md>
           <div>
             <h2 class="md-title filter-member">Filter by member</h2>
 
-            <md-checkbox  ng-repeat="member in allCardMembers" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
+            <md-checkbox  ng-repeat="member in allCardMembers | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
           </div>
         </p>
       </md-content>
