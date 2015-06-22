@@ -31,11 +31,11 @@
                   <div class="md-list-item-text">
                     <div layout="row" layout-align="start center">
                       <h3 class="md-title" style="display:inline" flex>{{card.name}}</h3>
-                      <span ng-repeat="key in card.keyResults">
-                        <i class="fa fa-check" ng-if="key.status === 'complete'">
+                      <span ng-repeat="key in card.keyResults" >
+                        <i class="fa fa-check checked" ng-if="key.status === 'complete'">
                           <md-tooltip>{{key.name}}</md-tooltip>
                         </i>
-                        <i class="fa fa-question" ng-if="key.status === 'incomplete'">
+                        <i class="fa fa-question unchecked" ng-if="key.status === 'incomplete'">
                           <md-tooltip>{{key.name}}</md-tooltip>
                         </i>
                       </span>

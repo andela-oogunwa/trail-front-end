@@ -154,3 +154,11 @@ span > i {
 .ng-cloak {
   display: none !important;
 }
+
+.unchecked {
+  color: #ccc;
+}
+
+.checked {
+  color: #33dd11;
+}
