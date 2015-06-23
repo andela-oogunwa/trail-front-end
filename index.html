@@ -11,7 +11,7 @@
     <md-toolbar layout="row" >
       <div class="md-toolbar-tools">
         <i ng-click="toggleLeft()" class="md-primary fa fa-bars fa-lg" id='side-nav-button'></i>
-        <h1 class="trail-name">Welcome to Trail</h1>
+        <h1 class="trail-name">OKR RESULTS</h1>
       </div>
     </md-toolbar>
     <div class="contents">
@@ -19,8 +19,8 @@
         <div layout="column" flex id="content">
           <md-content layout="column" flex class="md-padding">
             <md-list>
-              <md-subheader class="md-no-sticky">OKR RESULTS</md-subheader>
-              <md-divider ></md-divider>
+              <!-- <md-subheader class="md-no-sticky">OKR RESULTS</md-subheader>
+              <md-divider ></md-divider> -->
               <div layout="row" ng-show="isLoading" layout-sm="column" layout-align="space-around" style="position:fixed; top: 50%; left:50%;">
                 <md-progress-circular md-mode="indeterminate"></md-progress-circular>
               </div>
@@ -40,13 +40,15 @@
                         </i>
                       </span>
                     </div>
-                    <div layout="row" layout-align="space-between">
+                    <div layout="column">
                       <div>
                         <p ng-repeat="label in card.labels" class="label">{{label}}</p>
                       </div>
-                      <p layout-margin>{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
-                      <div flex="33" layout-margin >
-                        <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+                      <div layout="row" layout-align="space-between">
+                        <p layout-margin  style="display:inline">{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
+                        <div flex="33" layout-margin  style="display:inline">
+                          <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+                        </div>
                       </div>
                     </div>
                     <md-divider ></md-divider>
