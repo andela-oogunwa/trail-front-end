@@ -63,6 +63,10 @@ md-checkbox .md-label {
   padding-right: 50px;
 }
 
+.no-key-result {
+  color: red !important;
+}
+
 .check-box {
   font-size: 12px !important;
   font-weight: 200 !important;
