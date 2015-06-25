@@ -17,72 +17,13 @@
     <div class="contents">
       <div layout="row" flex>
         <div layout="column" flex id="content">
-          <md-content layout="column" flex class="md-padding">
-            <md-list>
-              <!-- <md-subheader class="md-no-sticky">OKR RESULTS</md-subheader>
-              <md-divider ></md-divider> -->
-              <div layout="row" ng-show="isLoading" layout-sm="column" layout-align="space-around" style="position:fixed; top: 50%; left:50%;">
-                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-              </div>
-              <div ng-hide="isLoading">
-                <md-list-item class="md-2-line" ng-repeat="card in cards | cardFilter: filterArray" ng-click="showCardDetails($event,card)">
-                  <img ng-if="avatarHash[card.membersid[0]]" ng-src="{{avatarHash[card.membersid[0]]}}" class="md-avatar" alt="" style="display:inline"/>
-                  <span class="member-initials" ng-if="!avatarHash[card.membersid[0]]">{{initials[card.membersid[0]]}}</span>
-                  <div class="md-list-item-text">
-                    <div layout="row" layout-align="start center">
-                      <h3 class="md-title" style="display:inline; font-weight: 500 !important" ng-class="!card.keyResults.length ? 'no-key-result' : ''" flex>{{card.name}}</h3>
-                      <span ng-repeat="key in card.keyResults" >
-                        <i class="fa fa-check checked" ng-if="key.status === 'complete'">
-                          <md-tooltip>{{key.name}}</md-tooltip>
-                        </i>
-                        <i class="fa fa-question unchecked" ng-if="key.status === 'incomplete'">
-                          <md-tooltip>{{key.name}}</md-tooltip>
-                        </i>
-                      </span>
-                    </div>
-                    <div layout="column">
-                      <div>
-                        <p ng-repeat="label in card.labels" class="label">{{label}}</p>
-                      </div>
-                      <div layout="row" layout-align="space-between">
-                        <p layout-margin  style="display:inline">{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
-                        <div flex="33" layout-margin  style="display:inline">
-                          <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
-                        </div>
-                      </div>
-                    </div>
-                    <md-divider ></md-divider>
-                  </div>
-                </md-list-item>
-              </div>
-          </md-content>
+          <!-- list template -->
+          <ng-include src="./partials/lists.tmpl.html"></ng-include>
         </div>
       </div>
     </div>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z1" id='md-sidenav-style' md-component-id="left">
-      <md-toolbar>
-        <!-- TO-DO: add a close button -->
-        <h1 class="md-toolbar-tools filters">
-          Filters
-        </h1>
-      </md-toolbar>
-      <md-content layout-padding>
-        <p hide-md show-gt-md>
-          <div>
-            <h2 class="md-title filter-member">Filter by label</h2>
-
-            <md-checkbox  ng-repeat="label in allCardLabels | orderBy: label" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
-          </div>
-        </p>
-        <p hide-md show-gt-md>
-          <div>
-            <h2 class="md-title filter-member">Filter by member</h2>
-
-            <md-checkbox  ng-repeat="member in allCardMembers | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
-          </div>
-        </p>
-      </md-content>
-    </md-sidenav>
+    <!-- Sidebar template -->
+    <ng-include src="./partials/sidebar.tmpl.html"></ng-include>
     <!-- Angular Material Dependencies -->
     <!-- The client library requires jQuery  -->
     <script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
