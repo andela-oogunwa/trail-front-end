@@ -27,6 +27,11 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     $mdSidenav('left').close();
   };
 
+  $scope.getImage = function(imageLink,card) {
+    card.imageLink = imageLink || '../default.png';
+    return card.imageLink;
+  };
+
   $scope.filterMember = function(id, selected) {
     if(selected){
       $scope.filterArray.push(id);

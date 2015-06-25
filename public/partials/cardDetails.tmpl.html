@@ -3,23 +3,32 @@
     <div layout="row" layout-wrap>
       <div flex class="font-design">
         <md-content layout-margin>
-          <h2 class="modal-name" style="font-weight: 500 !important;" flex>{{card.name}}</h2>
+          <md-list-item class="md-2-line">
+            <div  layout="row" class="card-image">
+              <img ng-src="{{card.imageLink}}" class="md-avatar" alt=""/>
+              <div layout="column">
+                <h2 class="modal-name" style="font-weight: 500 !important;" flex>{{::card.name}}</h2>
+                <h6 ></h6> 
+              </div>
+            </div>
+          </md-list-item>
         </md-content>
+        <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
         <h3 class="md-subhead" layout-margin layout-padding>Tasks</h3>
         <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
-          {{task.name}}
+          {{::task.name}}
         </md-checkbox>
-        <md-divider></md-divider>
         <h3 class="md-subhead" layout-margin layout-padding>Key Results</h3>
         <md-checkbox ng-repeat="result in card.keyResults" ng-checked="result.status === 'incomplete' ? false : true" flex class="check-box">
-          {{result.name}}
+          {{::result.name}}
         </md-checkbox>
       </div>
     </div>
-    <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+    <md-divider></md-divider>
     <section layout="row" layout-sm="column" layout-align="center center">
-      <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><md-button class="custom-button"> Open in Trello </md-button></a>
+      <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><h6>OPEN IN TRELLO</h6></a>
       <md-button ng-click="hide()" class='close-modal'>Close</md-button>
+      <i class="icon-remove"></i>
     </section>
   </md-content>
 </md-dialog>

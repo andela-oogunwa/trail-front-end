@@ -62,6 +62,7 @@ md-checkbox .md-label {
   text-overflow: ellipsis !important;
 }
 
+
 .no-key-result {
   color: red !important;
 }
@@ -90,6 +91,9 @@ md-checkbox .md-label {
   margin-right: 5px !important;
 }
 
+.labels-name {
+  margin-right: 2px;
+}
 .modal-dialog {
   width: 50%;
 }
@@ -188,11 +192,29 @@ md-progress-linear .md-container, md-progress-linear .md-bar {
 }
 
 md-progress-linear .md-container {
-  background-color: #919692 !important;
+  background-color: slategrey !important;
 }
 
 md-progress-linear .md-bar{
-  background-color: #00E600 !important;
+  background-color: dark-pink !important;
+}
+
+.md-list-item-inner>.md-avatar:first-child, md-list-item>.md-avatar:first-child {
+  width: 130px !important;
+  height: 130px !important;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+  border-radius: 2px !important;
+  /*box-sizing: content-box;*/
+}
+
+.tasks {
+  margin-right: 1% !important;
+}
+
+.card-image {
+  height: 70px;
 }
 
 .md-icon-toggled {
@@ -237,4 +259,9 @@ md-progress-linear .md-bar{
       -ms-transition: height .5s ease-in-out;
        -o-transition: height .5s ease-in-out;
           transition: height .5s ease-in-out;
+}
+
+.card-image img{
+  height:100%;
+  margin-right: 16px;
 }

@@ -7,10 +7,19 @@
     </div>
     <div ng-hide="isLoading">
       <md-list-item class="md-2-line" ng-repeat="card in cards | cardFilter: filterArray" ng-click="showCardDetails($event,card)">
-        <img ng-if="avatarHash[card.membersid[0]]" ng-src="{{avatarHash[card.membersid[0]]}}" class="md-avatar" alt="" style="display:inline"/>
-        <span class="member-initials" ng-if="!avatarHash[card.membersid[0]]">{{initials[card.membersid[0]]}}</span>
+        <img ng-src="{{ getImage(avatarHash[card.membersid[0]], card) }}" class="md-avatar" alt="" style="display:inline"/>
         <div class="md-list-item-text">
-          <div layout="row" layout-align="start center">
+          <h3 class="md-title card-name" style="display:inline; font-weight: 500 !important" ng-class="!card.keyResults.length ? 'no-key-result' : ''" flex>{{card.name | strLimit: 60}}</h3>
+          <div layout="column">
+            <div layout="row" layout-align="space-between">
+              <p style="display:inline; font-weight: 100 !important">TASK PROGRESS</p>
+              <p layout-margin  style="display:inline" class="tasks">{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
+            </div>
+            <div flex="33" layout-margin>
+              <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+            </div>
+          </div>
+           <!-- <div layout="row" layout-align="start center">
             <h3 class="md-title" style="display:inline; font-weight: 500 !important" ng-class="!card.keyResults.length ? 'no-key-result' : ''" flex>{{card.name}}</h3>
             <span ng-repeat="key in card.keyResults" >
               <i class="fa fa-check checked" ng-if="key.status === 'complete'">
@@ -20,16 +29,14 @@
                 <md-tooltip>{{key.name}}</md-tooltip>
               </i>
             </span>
-          </div>
-          <div layout="column">
-            <div>
-              <p ng-repeat="label in card.labels" class="label">{{label}}</p>
+          </div> -->
+          <div layout="row" layout-align="space-between">
+            <div style="display:inline">
+              <p>KEY RESULTS</p>
+              <p>key results</p>
             </div>
-            <div layout="row" layout-align="space-between">
-              <p layout-margin  style="display:inline">{{card.taskCompleted}}/{{card.tasks.length}} tasks completed</p>
-              <div flex="33" layout-margin  style="display:inline">
-                <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
-              </div>
+            <div style="display:inline" class="labels-name">
+              <p ng-repeat="label in card.labels" class="label">{{label}}</p>
             </div>
           </div>
           <md-divider ></md-divider>
