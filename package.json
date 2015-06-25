@@ -1,0 +1,29 @@
+{
+  "name": "trail-front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-oogunwa/trail-front-end.git"
+  },
+  "keywords": [
+    "trello",
+    "andela",
+    "data",
+    "visualisation"
+  ],
+  "author": "Fadekemi Ogunwa, Abimbola Idowu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-oogunwa/trail-front-end/issues"
+  },
+  "homepage": "https://github.com/andela-oogunwa/trail-front-end#readme",
+  "dependencies": {
+    "express": "^4.13.0"
+  }
+}
