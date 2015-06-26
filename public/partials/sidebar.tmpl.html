@@ -13,6 +13,7 @@
         <md-checkbox  ng-repeat="label in allCardLabels | orderBy: label" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
       </div>
     </p>
+    <md-divider></md-divider>
     <p hide-md show-gt-md>
       <div>
         <h2 class="md-title filter-member">Filter by member</h2>
