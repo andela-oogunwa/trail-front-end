@@ -8,8 +8,7 @@ angular.module('TrailApp').directive('trailDropdown', [function() {
       var icon = element.find('i');
       var _container = element.find('div.trail-list div');
       var container = element.find('div.trail-list');
-      container.css('height', 0);
-      element.bind('click', function() {
+      element.find('.md-title').bind('click', function() {
         attrs.height = _container.prop('clientHeight') + 10; //adding 10px because of the margin and padding of a div, this should be improved
         if (!attrs.expanded) {
           icon.removeClass('md-icon-toggle').addClass('md-icon-toggled');

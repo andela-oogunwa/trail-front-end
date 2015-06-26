@@ -23,7 +23,7 @@
               Filter by label
               <span style="float: right"><i class="fa fa-angle-up"></i></span>
             </md-button>
-            <div class="trail-list menu-toggle-list">
+            <div class="trail-list menu-toggle-list" style="height: 0">
               <div>
                 <md-checkbox ng-repeat="label in allCardLabels | orderBy: label" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
               </div>
@@ -37,7 +37,7 @@
               Filter by member
               <span style="float: right"><i class="fa fa-angle-up"></i></span>
             </md-button>
-            <div class="trail-list menu-toggle-list">
+            <div class="trail-list menu-toggle-list" style="height: 0">
               <div>
                 <md-checkbox  ng-repeat="member in allCardMembers | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
               </div>
