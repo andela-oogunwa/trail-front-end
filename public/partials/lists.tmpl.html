@@ -33,7 +33,14 @@
           <div layout="row" layout-align="space-between">
             <div style="display:inline">
               <p>KEY RESULTS</p>
-              <p>key results</p>
+              <span ng-repeat="key in card.keyResults" >
+                <i class="fa fa-check-circle fa-lg checked" ng-if="key.status === 'complete'">
+                  <md-tooltip>{{key.name}}</md-tooltip>
+                </i>
+                <i class="fa fa-check-circle fa-lg unchecked" ng-if="key.status === 'incomplete'">
+                  <md-tooltip>{{key.name}}</md-tooltip>
+                </i>
+              </span>
             </div>
             <div style="display:inline" class="labels-name">
               <p ng-repeat="label in card.labels" class="label">{{label}}</p>
