@@ -13,7 +13,7 @@
       <md-toolbar>
         <!-- TO-DO: add a close button -->
         <h1 class="md-toolbar-tools filters">
-          Filters
+          OKR Results
         </h1>
       </md-toolbar>
       <md-content layout-padding>
@@ -39,7 +39,11 @@
             </md-button>
             <div class="trail-list menu-toggle-list" style="height: 0">
               <div>
-                <md-checkbox  ng-repeat="member in allCardMembers | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
+                <md-input-container flex>
+                  <label>Search for members</label>
+                  <input ng-model="search">
+                </md-input-container>
+                <md-checkbox  ng-repeat="member in allCardMembers | filter:search | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
               </div>
             </div>
           </div>
