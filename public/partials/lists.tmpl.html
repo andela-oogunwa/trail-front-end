@@ -19,25 +19,11 @@
               <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
             </div>
           </div>
-           <!-- <div layout="row" layout-align="start center">
-            <h3 class="md-title" style="display:inline; font-weight: 500 !important" ng-class="!card.keyResults.length ? 'no-key-result' : ''" flex>{{card.name}}</h3>
-            <span ng-repeat="key in card.keyResults" >
-              <i class="fa fa-check checked" ng-if="key.status === 'complete'">
-                <md-tooltip>{{key.name}}</md-tooltip>
-              </i>
-              <i class="fa fa-question unchecked" ng-if="key.status === 'incomplete'">
-                <md-tooltip>{{key.name}}</md-tooltip>
-              </i>
-            </span>
-          </div> -->
           <div layout="row" layout-align="space-between">
             <div style="display:inline">
               <p>KEY RESULTS</p>
               <span ng-repeat="key in card.keyResults" >
-                <i class="fa fa-check-circle fa-lg checked" ng-if="key.status === 'complete'">
-                  <md-tooltip>{{key.name}}</md-tooltip>
-                </i>
-                <i class="fa fa-check-circle fa-lg unchecked" ng-if="key.status === 'incomplete'">
+                <i class="fa fa-check-circle fa-lg" ng-class="key.status === 'complete' ? 'checked' : 'unchecked'">
                   <md-tooltip>{{key.name}}</md-tooltip>
                 </i>
               </span>
