@@ -7,14 +7,52 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <meta name="viewport" content="initial-scale=1"/>
   </head>
-  <body ng-controller="MainCtrl" ng-cloak class="ng-cloak">
-    <md-toolbar layout="row" >
+  <body ng-controller="MainCtrl" layout="row" ng-cloak class="ng-cloak">
+    <!-- Sidebar template -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" tabindex="-1" id='md-sidenav-style' md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar>
+        <!-- TO-DO: add a close button -->
+        <h1 class="md-toolbar-tools filters">
+          Filters
+        </h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <p hide-md show-gt-md>
+          <div trail-dropdown>
+            <md-button class="md-title filter-member">
+              Filter by label
+              <span style="float: right"><i class="fa fa-angle-up"></i></span>
+            </md-button>
+            <div class="trail-list menu-toggle-list">
+              <div>
+                <md-checkbox ng-repeat="label in allCardLabels | orderBy: label" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
+              </div>
+            </div>
+          </div>
+        </p>
+        <md-divider></md-divider>
+        <p hide-md show-gt-md>
+          <div trail-dropdown>
+            <md-button class="md-title filter-member">
+              Filter by member
+              <span style="float: right"><i class="fa fa-angle-up"></i></span>
+            </md-button>
+            <div class="trail-list menu-toggle-list">
+              <div>
+                <md-checkbox  ng-repeat="member in allCardMembers | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
+              </div>
+            </div>
+          </div>
+        </p>
+      </md-content>
+    </md-sidenav>
+    <!-- <md-toolbar layout="row" >
       <div class="md-toolbar-tools">
         <i ng-click="toggleLeft()" class="md-primary fa fa-bars fa-lg" id='side-nav-button'></i>
         <h1 class="trail-name">OKR RESULTS</h1>
       </div>
-    </md-toolbar>
-    <div class="contents">
+    </md-toolbar> -->
+    <div layout="column" tabindex="-1" role="main" class="contents" flex>
       <div layout="row" flex>
         <div layout="column" flex id="content">
           <!-- list template -->
@@ -22,8 +60,7 @@
         </div>
       </div>
     </div>
-    <!-- Sidebar template -->
-    <ng-include src="'./partials/sidebar.tmpl.html'"></ng-include>
+
     <!-- Angular Material Dependencies -->
     <!-- The client library requires jQuery  -->
     <script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -36,5 +73,6 @@
     <script src="/js/app.js"></script>
     <script src="/js/trello.service.js"></script>
     <script src="/js/card.filter.js"></script>
+    <script src="/js/dropdown.directive.js"></script>
   </body>
 </html>
