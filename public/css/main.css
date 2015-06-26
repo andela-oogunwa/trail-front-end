@@ -60,7 +60,6 @@ md-checkbox .md-label {
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  padding-right: 50px;
 }
 
 .no-key-result {
@@ -78,6 +77,8 @@ md-checkbox .md-label {
 
 .md-title {
   margin: 0 !important;
+  text-align: left !important;
+  width: 100% !important;
 }
 
 .label {
@@ -192,4 +193,48 @@ md-progress-linear .md-container {
 
 md-progress-linear .md-bar{
   background-color: #00E600 !important;
+}
+
+.md-icon-toggled {
+  -webkit-transform: rotate(180deg);
+     -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: transform .5s ease-in-out;
+     -moz-transition: transform .5s ease-in-out;
+      -ms-transition: transform .5s ease-in-out;
+       -o-transition: transform .5s ease-in-out;
+          transition: transform .5s ease-in-out;
+}
+
+.md-icon-toggle {
+  -webkit-transform: rotate(0);
+     -moz-transform: rotate(0);
+      -ms-transform: rotate(0);
+       -o-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-transition: transform .5s ease-in-out;
+     -moz-transition: transform .5s ease-in-out;
+      -ms-transition: transform .5s ease-in-out;
+       -o-transition: transform .5s ease-in-out;
+          transition: transform .5s ease-in-out;
+}
+
+.menu-toggle-list {
+  overflow: hidden;
+  -webkit-transition: height .5s ease-in-out;
+     -moz-transition: height .5s ease-in-out;
+      -ms-transition: height .5s ease-in-out;
+       -o-transition: height .5s ease-in-out;
+          transition: height .5s ease-in-out;
+}
+
+.menu-toggled-list {
+  overflow: hidden;
+  -webkit-transition: height .5s ease-in-out;
+     -moz-transition: height .5s ease-in-out;
+      -ms-transition: height .5s ease-in-out;
+       -o-transition: height .5s ease-in-out;
+          transition: height .5s ease-in-out;
 }
