@@ -9,11 +9,11 @@
   </head>
   <body ng-controller="MainCtrl" layout="row" ng-cloak class="ng-cloak">
     <!-- Sidebar template -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" tabindex="-1" id='md-sidenav-style' md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2 show-sm" tabindex="-1" id='md-sidenav-style' md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
       <md-toolbar>
         <!-- TO-DO: add a close button -->
         <h1 class="md-toolbar-tools filters">
-          OKR Results
+          OKR RESULTS
         </h1>
       </md-toolbar>
       <md-content layout-padding>
@@ -21,7 +21,7 @@
           <div trail-dropdown>
             <md-button class="md-title filter-member">
               Filter by label
-              <span style="float: right"><i class="fa fa-angle-up"></i></span>
+              <span style="float: right"><i class="fa fa-angle-down"></i></span>
             </md-button>
             <div class="trail-list menu-toggle-list" style="height: 0">
               <div>
@@ -35,7 +35,7 @@
           <div trail-dropdown>
             <md-button class="md-title filter-member">
               Filter by member
-              <span style="float: right"><i class="fa fa-angle-up"></i></span>
+              <span style="float: right"><i class="fa fa-angle-down"></i></span>
             </md-button>
             <div class="trail-list menu-toggle-list" style="height: 0">
               <div>

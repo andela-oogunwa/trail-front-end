@@ -1,27 +1,25 @@
-<md-dialog class="modal-dialog">
-  <div>
-    <md-button class="md-icon-button icon" ng-click="hide()">
-      <md-icon class="fa fa-times fa-fw icon" aria-label="Close dialog"></md-icon>
-    </md-button>
+<md-dialog class="modal-dialog"> 
+  <div flex>
+    <md-icon class="fa fa-times fa-fw icon" ng-click="hide()" aria-label="Close dialog" class="close-dialog" layout-align="end"></md-icon>
+    <md-content layout-margin>
+      <md-list-item class="md-2-line">
+        <div  layout="row" class="card-image">
+          <img ng-src="{{card.imageLink}}" class="md-avatar" alt=""/>
+          <div layout="column">
+            <h2 class="modal-name" style="font-weight: 500 !important; position: center;" flex>{{::card.name}}</h2>
+            <h5 style="font-weight: 300 !important; font-size: 12px;">Member's name: {{::fullNames[card.membersid[0]]}}</h5>
+          </div>
+        </div>
+      </md-list-item>
+    </md-content>
+    <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
   </div>
-  <md-content>
+  <p style="margin-left: 30px; font-size: 14px;">{{::card.desc}}</p>
+  <md-dialog-content class="font-design">
     <div layout="row" layout-wrap>
-      <div flex class="font-design">
-        <md-content layout-margin>
-          <md-list-item class="md-2-line">
-            <div  layout="row" class="card-image">
-              <img ng-src="{{card.imageLink}}" class="md-avatar" alt=""/>
-              <div layout="column">
-                <h2 class="modal-name" style="font-weight: 500 !important;" flex>{{::card.name}}</h2>
-                <h5>{{fullNames[card.membersid[0]]}}</h5>
-
-              </div>
-            </div>
-          </md-list-item>
-        </md-content>
-        <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
+      <div flex>
         <div class="container">
-          <h3 class="md-subhead subhead" layout-margin layout-padding>Tasks</h3>
+          <h6 class="md-subhead subhead" style="font-size: 13px;" layout-margin layout-padding>Tasks</h6>
           <div class="tasks-name">
             <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
               {{::task.name}}
@@ -29,7 +27,7 @@
           </div>
         </div>
         <div class="container">
-          <h3 class="md-subhead subhead" layout-margin layout-padding>Key Results</h3>
+          <h6 class="md-subhead subhead" style="font-size: 13px;" layout-margin layout-padding>Key Results</h6>
           <div class="tasks-name">
             <md-checkbox ng-repeat="result in card.keyResults" ng-checked="result.status === 'incomplete' ? false : true" flex class="check-box">
               {{::result.name}}
@@ -38,7 +36,8 @@
         </div>
       </div>
     </div>
-    <md-divider></md-divider>
+  </md-dialog-content>
+  <div class="md-actions">
     <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><h6 class="opentrello">OPEN IN TRELLO</h6></a>
-  </md-content>
+  </div>
 </md-dialog>
