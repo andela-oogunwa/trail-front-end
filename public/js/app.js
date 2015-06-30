@@ -15,6 +15,7 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   $scope.isLoading = true;
   $scope.initials = {};
   $scope.avatarHash = {};
+  $scope.membersNames = {};
   $scope.mode = 'determinate';
   function buildToggler(navID) {
     var debounceFn =  $mdUtil.debounce(function(){
@@ -57,12 +58,12 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
     $scope.openCard = id;
   };
 
-  $scope.showCardDetails = function(env, card) {
+  $scope.showCardDetails = function(env, card, fullNames) {
     $mdDialog.show({
-
       controller: function DialogController($scope, $mdDialog) {
         $scope.mode = 'determinate';
         $scope.card  = card;
+        $scope.fullNames = fullNames;
 
         $scope.hide = function() {
           $mdDialog.hide();
@@ -91,6 +92,8 @@ angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidena
   TrelloSrv.load().then(function(data) {
     TrelloSrv.processMembers(data).then(function(result) {
       $scope.initials = result.initials;
+      $scope.membersNames = result.fullNames;
+      console.log($scope.membersNames);
       $scope.avatarHash = result.avatarHash;
       $scope.allCardMembers = result.members;
       $scope.isLoading = false;

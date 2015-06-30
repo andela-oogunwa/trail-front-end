@@ -1,4 +1,9 @@
 <md-dialog class="modal-dialog">
+  <div>
+    <md-button class="md-icon-button icon" ng-click="hide()">
+      <md-icon class="fa fa-times fa-fw icon" aria-label="Close dialog"></md-icon>
+    </md-button>
+  </div>
   <md-content>
     <div layout="row" layout-wrap>
       <div flex class="font-design">
@@ -8,27 +13,32 @@
               <img ng-src="{{card.imageLink}}" class="md-avatar" alt=""/>
               <div layout="column">
                 <h2 class="modal-name" style="font-weight: 500 !important;" flex>{{::card.name}}</h2>
-                <h6 ></h6> 
+                <h5>{{fullNames[card.membersid[0]]}}</h5>
+
               </div>
             </div>
           </md-list-item>
         </md-content>
         <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
-        <h3 class="md-subhead" layout-margin layout-padding>Tasks</h3>
-        <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
-          {{::task.name}}
-        </md-checkbox>
-        <h3 class="md-subhead" layout-margin layout-padding>Key Results</h3>
-        <md-checkbox ng-repeat="result in card.keyResults" ng-checked="result.status === 'incomplete' ? false : true" flex class="check-box">
-          {{::result.name}}
-        </md-checkbox>
+        <div class="container">
+          <h3 class="md-subhead subhead" layout-margin layout-padding>Tasks</h3>
+          <div class="tasks-name">
+            <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
+              {{::task.name}}
+            </md-checkbox>
+          </div>
+        </div>
+        <div class="container">
+          <h3 class="md-subhead subhead" layout-margin layout-padding>Key Results</h3>
+          <div class="tasks-name">
+            <md-checkbox ng-repeat="result in card.keyResults" ng-checked="result.status === 'incomplete' ? false : true" flex class="check-box">
+              {{::result.name}}
+            </md-checkbox>
+          </div>
+        </div>
       </div>
     </div>
     <md-divider></md-divider>
-    <section layout="row" layout-sm="column" layout-align="center center">
-      <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><h6>OPEN IN TRELLO</h6></a>
-      <md-button ng-click="hide()" class='close-modal'>Close</md-button>
-      <i class="icon-remove"></i>
-    </section>
+    <a ng-href="https://trello.com/c/{{card.id}}" target="_blank"><h6 class="opentrello">OPEN IN TRELLO</h6></a>
   </md-content>
 </md-dialog>
