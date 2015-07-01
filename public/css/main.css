@@ -36,6 +36,7 @@
 
 md-checkbox .md-container {
   top: 13px !important;
+  left: 2px !important;
 }
 
 md-checkbox .md-label span {

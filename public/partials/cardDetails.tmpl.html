@@ -14,11 +14,11 @@
     </md-content>
     <md-progress-linear class="md-accent" md-mode="{{mode}}" value="{{card.progress}}"></md-progress-linear>
   </div>
-  <p style="margin-left: 30px; font-size: 14px;">{{::card.desc}}</p>
   <md-dialog-content class="font-design">
     <div layout="row" layout-wrap>
       <div flex>
         <div class="container">
+          <p style="margin-left: 10px; margin-top: 2px; font-size: 14px;">{{::card.desc}}</p>
           <h6 class="md-subhead subhead" style="font-size: 13px;" layout-margin layout-padding>Tasks</h6>
           <div class="tasks-name">
             <md-checkbox ng-repeat="task in card.tasks" ng-checked="task.status === 'incomplete' ? false : true" flex class="check-box">
