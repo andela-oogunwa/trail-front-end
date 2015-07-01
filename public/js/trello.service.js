@@ -5,7 +5,7 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
     authorize: function() {
       return $q(function(resolve, reject) {
         var opts = {
-          type: "redirect",
+          type: "popup",
           name: "Andela Trail",
           persist: true,
           expiration: "never",
@@ -13,9 +13,13 @@ angular.module('TrailApp').factory('TrelloSrv', ['$q', function($q) {
           error: reject
         };
         Trello.authorize(opts);
-
       });
     },
+
+    isAuthorized: function() {
+      return window.localStorage.getItem('trello_token');
+    },
+
     load: function() {
       return $q(function(resolve, reject) {
         var opts = {
