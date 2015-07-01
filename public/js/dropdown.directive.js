@@ -9,7 +9,9 @@ angular.module('TrailApp').directive('trailDropdown', [function() {
       var _container = element.find('div.trail-list div');
       var container = element.find('div.trail-list');
       element.find('.md-title').bind('click', function() {
-        attrs.height = _container.prop('clientHeight') + 10; //adding 10px because of the margin and padding of a div, this should be improved
+        if(!attrs.height) {
+          attrs.height = _container.prop('clientHeight') + 10; //adding 10px because of the margin and padding of a div, this should be improved
+        }
         if (!attrs.expanded) {
           icon.removeClass('md-icon-toggle').addClass('md-icon-toggled');
           container.css('height', attrs.height);
