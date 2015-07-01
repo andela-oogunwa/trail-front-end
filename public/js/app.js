@@ -1,112 +1,30 @@
 /* global angular*/
 'use strict';
 
-angular.module('TrailApp', ['ngMaterial']);
-angular.module('TrailApp').run(function(TrelloSrv) {
-  TrelloSrv.authorize();
-});
-angular.module('TrailApp').controller('MainCtrl',['$scope','$timeout','$mdSidenav', '$mdUtil','$filter', 'TrelloSrv', '$mdDialog', function($scope, $timeout, $mdSidenav, $mdUtil, $filter, TrelloSrv, $mdDialog){
-  $scope.filterArray = [];
-  $scope.allCardMembers = [];
-  $scope.allCardLabels = [];
-  $scope.toggleLeft = buildToggler('left');
-  $scope.filterLabelsArray = [];
-  $scope.cards = [];
-  $scope.isLoading = true;
-  $scope.initials = {};
-  $scope.avatarHash = {};
-  $scope.membersNames = {};
-  $scope.mode = 'determinate';
-  function buildToggler(navID) {
-    var debounceFn =  $mdUtil.debounce(function(){
-          $mdSidenav(navID)
-            .toggle();
-        },300);
-    return debounceFn;
-  }
-  $scope.close = function() {
-    $mdSidenav('left').close();
-  };
+angular.module('TrailApp', ['ngAnimate', 'ngMaterial', 'ui.router', 'toaster'])
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  $scope.getImage = function(imageLink,card) {
-    card.imageLink = imageLink || '../default.png';
-    return card.imageLink;
-  };
+  $urlRouterProvider.otherwise("/login");
 
-  $scope.filterMember = function(id, selected) {
-    if(selected){
-      $scope.filterArray.push(id);
-    } else {
-      $scope.filterArray.splice($scope.filterArray.indexOf(id),1);
-    }
-  };
-
-  $scope.filterLabel = function(label, selected) {
-    if(selected){
-      $scope.filterArray.push(label);
-    } else {
-      $scope.filterArray.splice($scope.filterArray.indexOf(label),1);
-    }
-  };
-
-
-  $scope.toggleCards = function(id) {
-    if(id === $scope.openCard) {
-      $scope.openCard = 'all close';
-      return;
-    }
-    $scope.openCard = id;
-  };
-
-  $scope.showCardDetails = function(env, card, fullNames) {
-    $mdDialog.show({
-      controller: function DialogController($scope, $mdDialog) {
-        $scope.mode = 'determinate';
-        $scope.card  = card;
-        $scope.fullNames = fullNames;
-
-        $scope.hide = function() {
-          $mdDialog.hide();
-        };
-
-        $scope.cancel = function() {
-          $mdDialog.cancel();
-        };
-
-        $scope.answer = function(answer) {
-          $mdDialog.hide(answer);
-        };
-      },
-      templateUrl: 'partials/cardDetails.tmpl.html',
-      // parent: angular.element(document.body),
-      targetEvent: env
+  $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: '../partials/login.tmpl.html'
     })
-    .then(function(answer) {
-      $scope.alert = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.alert = 'You cancelled the dialog.';
+    .state('home', {
+      url: '/',
+      templateUrl: '../partials/home.tmpl.html'
     });
-  };
-
-
-  TrelloSrv.load().then(function(data) {
-    TrelloSrv.processMembers(data).then(function(result) {
-      $scope.initials = result.initials;
-      $scope.membersNames = result.fullNames;
-      console.log($scope.membersNames);
-      $scope.avatarHash = result.avatarHash;
-      $scope.allCardMembers = result.members;
-      $scope.isLoading = false;
-    });
-    TrelloSrv.processLabels(data).then(function(labels) {
-      $scope.allCardLabels = labels;
-    });
-    TrelloSrv.processCards(data).then(function(cards) {
-      $scope.cards = cards;
-    });
-  }, function(error) {
-    console.log(error);
-  });
 }]);
 
-
+angular.module('TrailApp').run(['$rootScope', '$location', 'TrelloSrv',
+  function($rootScope, $location, TrelloSrv) {
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      if (!TrelloSrv.isAuthorized() && toState.name !== 'login') {
+        console.log('not isAuthorized');
+        $location.path('/login');
+      } else if (TrelloSrv.isAuthorized() && toState.name === 'login') {
+        $location.path('/');
+      }
+    });
+  }]);

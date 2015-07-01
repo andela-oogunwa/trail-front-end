@@ -1,3 +1,4 @@
+
 .md-toolbar-tools h1 {
   font-size: inherit;
   font-weight: inherit;
@@ -5,7 +6,7 @@
 }
 
 .trail-name {
-  margin-left: 20% !important;
+  /*margin-left: 20% !important;*/
   font-size: 20px !important;
   font-weight: 500 !important;
   letter-spacing: .005em !important;
@@ -280,4 +281,12 @@ md-progress-linear .md-bar{
 
 .opentrello {
   float: right !important;
+}
+
+.login-container {
+  border: solid 1px;
+  width: 30%;
+  margin: auto;
+  margin-top: 20%;
+  text-align: center;
 }

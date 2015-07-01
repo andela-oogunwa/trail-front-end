@@ -1,0 +1,45 @@
+<section ng-controller="HomeCtrl" layout-fill layout="row">
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" tabindex="-1" id='md-sidenav-style' md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-content layout-padding>
+      <p hide-md show-gt-md>
+        <div trail-dropdown>
+          <md-button class="md-title filter-member">
+            Filter by label
+            <span style="float: right"><i class="fa fa-angle-up"></i></span>
+          </md-button>
+          <div class="trail-list menu-toggle-list" style="height: 0">
+            <div>
+              <md-checkbox ng-repeat="label in allCardLabels | orderBy: label" ng-model='selected' ng-change="filterLabel(label, selected)" class="label-name">{{label}}</md-checkbox>
+            </div>
+          </div>
+        </div>
+      </p>
+      <md-divider></md-divider>
+      <p hide-md show-gt-md>
+        <div trail-dropdown>
+          <md-button class="md-title filter-member">
+            Filter by member
+            <span style="float: right"><i class="fa fa-angle-up"></i></span>
+          </md-button>
+          <div class="trail-list menu-toggle-list" style="height: 0">
+            <div>
+              <md-input-container flex>
+                <label>Search for members</label>
+                <input ng-model="search">
+              </md-input-container>
+              <md-checkbox  ng-repeat="member in allCardMembers | filter:search | orderBy: 'name'" ng-model='selected' ng-change="filterMember(member.id, selected)" class="member-name">{{member.name}}</md-checkbox>
+            </div>
+          </div>
+        </div>
+      </p>
+    </md-content>
+  </md-sidenav>
+  <div layout="column" tabindex="-1" role="main" class="contents" flex>
+    <div layout="row" flex>
+      <div layout="column" flex id="content">
+        <!-- list template -->
+        <ng-include src="'./partials/lists.tmpl.html'"></ng-include>
+      </div>
+    </div>
+  </div>
+</section>
