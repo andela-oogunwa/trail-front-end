@@ -53,12 +53,13 @@ angular.module('TrailApp').controller('HomeCtrl', ['$scope','$mdSidenav', '$mdUt
     $scope.openCard = id;
   };
 
-  $scope.showCardDetails = function(env, card) {
+  $scope.showCardDetails = function(env, card, fullNames) {
     $mdDialog.show({
 
       controller: function DialogController($scope, $mdDialog) {
         $scope.mode = 'determinate';
         $scope.card  = card;
+        $scope.fullNames = fullNames;
 
         $scope.hide = function() {
           $mdDialog.hide();
@@ -87,6 +88,7 @@ angular.module('TrailApp').controller('HomeCtrl', ['$scope','$mdSidenav', '$mdUt
     TrelloSrv.processMembers(data).then(function(result) {
       $scope.initials = result.initials;
       $scope.avatarHash = result.avatarHash;
+      $scope.membersNames = result.fullNames;
       $scope.allCardMembers = result.members;
       $scope.isLoading = false;
     });
