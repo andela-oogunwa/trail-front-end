@@ -34,12 +34,6 @@
       </p>
     </md-content>
   </md-sidenav>
-  <div layout="column" tabindex="-1" role="main" class="contents" flex>
-    <div layout="row" flex>
-      <div layout="column" flex id="content">
-        <!-- list template -->
-        <ng-include src="'./partials/lists.tmpl.html'"></ng-include>
-      </div>
-    </div>
+  <div ng-include="'./partials/lists.tmpl.html'" layout="column" layout-wrap tabindex="-1" style="overflow: auto" md-scroll-y role="main" flex>
   </div>
 </section>
