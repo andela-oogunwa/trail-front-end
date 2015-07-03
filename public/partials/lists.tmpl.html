@@ -32,7 +32,7 @@
               </span>
             </div>
             <div style="display:inline" class="labels-name">
-              <p ng-repeat="label in card.labels" class="label" ng-style="{'background-color': label.color}">{{label.name}}</p>
+              <p ng-repeat="label in card.labels" class="label" ng-style="{'background-color': label.color}" ng-click="filterLabel(label.name, true)">{{label.name}}</p>
             </div>
           </div>
           <md-divider ></md-divider>
