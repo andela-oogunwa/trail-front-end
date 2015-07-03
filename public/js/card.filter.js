@@ -1,15 +1,21 @@
 'use strict';
 
 angular.module('TrailApp').filter('cardFilter', function () {
+  var _searchResult;
   return function (allCards, searchArray) {
     if (!angular.isUndefined(allCards) && !angular.isUndefined(searchArray) && searchArray.length > 0) {
       var searchResult = [];
       _.forEach(allCards, function (card) {
-        if(_.intersection(card.membersid,searchArray).length > 0 || _.intersection(card.labels,searchArray).length > 0) {
-          searchResult.push(card);
-        }
+        _.forEach(searchArray, function(value) {
+          if(_.find(card.labels, 'name', value) || card.membersid.indexOf(value) !== -1) {
+            searchResult.push(card);
+          }
+        });
+        _searchResult = _.uniq(searchResult, function(card) {
+          return card.id;
+        });
       });
-       return searchResult;
+       return _searchResult;
     } else {
        return allCards;
     }
