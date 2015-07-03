@@ -7,7 +7,7 @@
     </div>
     <div ng-hide="isLoading" layout="column" layout-align="start center">
       <md-list-item class="md-2-line" layout-fill ng-repeat="card in cards | cardFilter: filterArray">
-        <img ng-src="{{ getImage(avatarHash[card.membersid[0]], card) }}" class="md-avatar" alt="" style="display:inline"/>
+        <img ng-src="{{ getImage(avatarHash[card.membersid[0]], card) }}" style="outline: 0" class="md-avatar" alt="" style="display:inline" ng-click="filterMember(card.membersid[0], 'true')"/>
         <div class="md-list-item-text">
           <div style="outline: 0; cursor: pointer" ng-click="showCardDetails($event,card,membersNames)">
           <h3 class="md-title card-name" style="display:inline; font-weight: 500 !important" ng-class="!card.keyResults.length ? 'no-key-result' : ''" flex>{{card.name | strLimit: 60}}</h3>
@@ -39,4 +39,5 @@
         </div>
       </md-list-item>
     </div>
+  </md-list>
 </md-content>
